@@ -7,7 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './components/HomeScreen'
 import InventoryScreen from './components/InventoryScreen'
 
-const baseURL = "http://localhost:4000"
+const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 export interface IAppProps {
   products: Product[]
 }
@@ -36,7 +36,7 @@ const App: React.FC<IAppProps> = () => {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Inventory">
-            {(props) => <InventoryScreen products={products} {...props}/>}
+            {(props) => <InventoryScreen products={products} {...props} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
