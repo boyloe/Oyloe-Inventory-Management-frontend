@@ -25,21 +25,14 @@ const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products
 
     useEffect(() => setInventory(products as Product[]),[])
 
-    // const displayInventory = () => inventory.map(product => {
-    //         return <View key={product.id} style={{flex: 3, alignItems: 'flex-start', justifyContent:'center'}} >
-    //                 <Text style={{fontSize: 18}}>Product Name: {product.name}</Text>
-    //                 <Text style={{fontSize: 12}}>Description: {product.description}</Text>
-    //             </View>
-        
-    // })
         const renderItem = ({ item }) => (
-            <Item name={item.name as Product[]} />
+            <Item name={item.name} quantity={item.quantity} key={item.id} />
         );
 
-    const Item = ({ name }) => (
+    const Item = ({ name ,quantity }) => (
         <View style={styles.item}>
             <Text style={styles.name}>{name}</Text>
-            <TextInput style={styles.textInput} placeholder="Enter Quantity" />
+            <TextInput style={styles.textInput} placeholder={quantity} />
         </View>
     );
 
@@ -48,7 +41,9 @@ const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products
             <FlatList
                 data={inventory}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={(item) => {
+                    return item.id}
+                }
             />
         </SafeAreaView>        
     )
@@ -56,28 +51,30 @@ const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      marginTop: StatusBar.currentHeight || 0,
+        flex: 1,
+        marginTop: StatusBar.currentHeight || 0,
     },
     item: {
-      backgroundColor: '#888',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
-      flexDirection: 'row',
-      justifyContent: 'space-between'
+        backgroundColor: '#888',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderRadius: 10
 
     },
     name: {
-      fontSize: 32,
+        fontSize: 32,
     },
     textInput: {
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: '#000',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        width: 40
         
-    }
-  });
+    },
+});
 
 export default InventoryScreen
