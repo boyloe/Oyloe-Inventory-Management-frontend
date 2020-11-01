@@ -30,19 +30,19 @@ const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products
         );
 
     const Item = ({ name ,quantity, description }) => (
-        <View style={styles.item}>
+        <View style={styles.item} >
             <View>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.description}>{description}</Text>
             </View>
             <View>
-                <TextInput style={styles.textInput} placeholder={quantity} />
+                <TextInput style={styles.textInput} placeholder={`${quantity}`} />
             </View>
         </View>
     );
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} >
             <FlatList
                 data={inventory}
                 renderItem={renderItem}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         
     },
     description: {
-        fontSize:14
+        fontSize:16
     }
 });
 
