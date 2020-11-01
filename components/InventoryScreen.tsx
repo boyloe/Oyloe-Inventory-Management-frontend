@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 32,
-        fontFamily: 'Marvel-Regular'
+        fontFamily: 'Futura'
+
     },
     textInput: {
         borderStyle: 'solid',
@@ -84,7 +85,8 @@ const styles = StyleSheet.create({
         
     },
     description: {
-        fontSize:16
+        fontSize:16,
+        fontFamily:'Futura'
     }
 });
 
