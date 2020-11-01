@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#000',
         backgroundColor: '#fff',
-        width: 40
+        width: 40,
+        textAlign: 'center'
         
     },
     description: {
