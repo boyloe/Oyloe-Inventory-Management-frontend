@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 32,
+        fontFamily: 'Marvel-Regular'
     },
     textInput: {
         borderStyle: 'solid',
