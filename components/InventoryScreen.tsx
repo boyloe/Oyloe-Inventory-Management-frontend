@@ -26,13 +26,18 @@ const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products
     useEffect(() => setInventory(products as Product[]),[])
 
         const renderItem = ({ item }) => (
-            <Item name={item.name} quantity={item.quantity} key={item.id} />
+            <Item name={item.name} quantity={item.quantity} key={item.id} description={item.description}/>
         );
 
-    const Item = ({ name ,quantity }) => (
+    const Item = ({ name ,quantity, description }) => (
         <View style={styles.item}>
-            <Text style={styles.name}>{name}</Text>
-            <TextInput style={styles.textInput} placeholder={quantity} />
+            <View>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.description}>{description}</Text>
+            </View>
+            <View>
+                <TextInput style={styles.textInput} placeholder={quantity} />
+            </View>
         </View>
     );
 
@@ -61,6 +66,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         borderRadius: 10
 
     },
@@ -75,6 +81,9 @@ const styles = StyleSheet.create({
         width: 40
         
     },
+    description: {
+        fontSize:14
+    }
 });
 
 export default InventoryScreen
