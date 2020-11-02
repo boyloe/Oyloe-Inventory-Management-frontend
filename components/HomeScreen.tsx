@@ -16,12 +16,13 @@ export default function HomeScreen({navigation}:{navigation:any}) {
                 placeholder='Username'
                 leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
             />
-            {/* <Input
+            <Input
                 placeholder='Password'
                 leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
-            /> */}
+            />
             <Button 
-                title="Click to Begin"
+                containerStyle={{width: 200}}
+                title="Login"
                 onPress={() => navigation.navigate('Inventory')}
             />
         </View>
