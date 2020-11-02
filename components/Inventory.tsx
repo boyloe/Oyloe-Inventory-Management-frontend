@@ -5,16 +5,15 @@ import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
 import { TextInput } from 'react-native-gesture-handler'
 
-export interface InventoryScreenProps {
+export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
     products: Product[]
 }
 
-const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products }) => {
-    
+const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {    
 
     const [inventory, setInventory] = React.useState<Product[]>([{
-        id: "z",
+        _id: "",
         name: "",
         description: "",
         package: '',
@@ -22,32 +21,35 @@ const InventoryScreen: React.FC <InventoryScreenProps> = ({ navigation, products
         quantity: 0
     }])
 
-
     useEffect(() => setInventory(products as Product[]),[])
 
-        const renderItem = ({ item }) => (
-            <Item name={item.name} quantity={item.quantity} key={item.id} description={item.description}/>
-        );
+    const renderInventory = ({ item }:{item:Product}) => (
+        <Item name={item.name} quantity={item.quantity} key={item._id} description={item.description}/>
+    );
 
-    const Item = ({ name ,quantity, description }) => (
+    const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string}) => (
         <View style={styles.item} >
-            <View>
+            <View style={styles.productInfo}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.description}>{description}</Text>
             </View>
             <View>
-                <TextInput style={styles.textInput} placeholder={`${quantity}`} />
+                <View style={{flexDirection:'row'}}>
+                    <Text style={styles.description}>Current Count: </Text>
+                    <TextInput style={styles.textInput} defaultValue={`${quantity}`}/>
+                </View>
+                <Text style={styles.description}>Previous Count: {quantity}</Text>
             </View>
         </View>
     );
-
+        
     return (
         <SafeAreaView style={styles.container} >
             <FlatList
                 data={inventory}
-                renderItem={renderItem}
-                keyExtractor={(item) => {
-                    return item.id}
+                renderItem={renderInventory}
+                keyExtractor={(product) => {
+                    return product._id}
                 }
             />
         </SafeAreaView>        
@@ -58,9 +60,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
+        backgroundColor: 
+        // '#003f5c'
+        // '#7a5195' Purple
+        // "#ef5675"
+        '#ffa600'
     },
     item: {
-        backgroundColor: '#888',
+        backgroundColor: '#73ab84',
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
@@ -71,7 +78,7 @@ const styles = StyleSheet.create({
 
     },
     name: {
-        fontSize: 32,
+        fontSize: 18,
         fontFamily: 'Futura'
 
     },
@@ -81,12 +88,16 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         backgroundColor: '#fff',
         width: 40,
-        textAlign: 'center'
+        textAlign: 'center',
+        alignSelf: 'flex-end'
         
     },
     description: {
         fontSize:16,
         fontFamily:'Futura'
+    },
+    productInfo: {
+        width: 150
     }
 });
 

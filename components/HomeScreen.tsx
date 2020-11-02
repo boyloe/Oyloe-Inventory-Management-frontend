@@ -1,15 +1,41 @@
 import * as React from 'react'
-import {View, Text, Button} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
+import { Button, Input } from 'react-native-elements'
+import {  NavigationScreenProp } from 'react-navigation'
 
 
-export default function HomeScreen({navigation}) {
+
+export interface HomeScreenProps {
+    navigation: NavigationScreenProp<any,any>;
+}
+export default function HomeScreen({navigation}:{navigation:any}) {
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent:'center'}}>
-            <Text style={{fontSize: 28}}>My Home Screen</Text>
+        <View style={styles.container}>
+            <Text style={styles.titleText}>Oyloe Inventory Management System</Text>
+            <Input
+                placeholder='Username'
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+            />
+            <Input
+                placeholder='Password'
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+            />
             <Button 
-                title="Go to Inventory"
+                title="Click to Begin"
                 onPress={() => navigation.navigate('Inventory')}
             />
         </View>
     )
 }
+
+const styles= StyleSheet.create({
+    container: {
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent:'center'
+    },
+    titleText: {
+        fontSize: 28, 
+        textAlign: 'center'
+    }
+})

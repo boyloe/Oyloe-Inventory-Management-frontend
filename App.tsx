@@ -5,7 +5,7 @@ import { Product } from './types'
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './components/HomeScreen'
-import InventoryScreen from './components/InventoryScreen'
+import Inventory from './components/Inventory'
 
 const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 export interface IAppProps {
@@ -16,7 +16,7 @@ const Stack = createStackNavigator()
 const App: React.FC<IAppProps> = () => {
 
   const [products, setProducts] = useState([{
-    id: "",
+    _id: "",
     name: "",
     description: "",
     package: '',
@@ -33,10 +33,23 @@ const App: React.FC<IAppProps> = () => {
 
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+          headerStyle: {
+            backgroundColor: '#79c7c5',
+          }, 
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        }}>
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Inventory">
-            {(props) => <InventoryScreen products={products} {...props} />}
+          <Stack.Screen 
+            name="Inventory" 
+            options={{
+              title:"Inventory Input",
+    
+              }}>
+            {(props) => <Inventory products={products} {...props} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
@@ -50,7 +63,7 @@ const App: React.FC<IAppProps> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000501',
     alignItems: 'center',
     justifyContent: 'center',
   },
