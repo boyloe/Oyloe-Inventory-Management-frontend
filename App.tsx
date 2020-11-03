@@ -6,6 +6,10 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './components/HomeScreen'
 import Inventory from './components/Inventory'
+import DeliveryFormScreen from './components/DeliveryFormScreen';
+import {dataBlueColors as Colors} from './assets/ColorPalette'
+import {funColors} from './assets/ColorPalette'
+
 
 const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 export interface IAppProps {
@@ -35,7 +39,7 @@ const App: React.FC<IAppProps> = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: {
-            backgroundColor: '#79c7c5',
+            backgroundColor: funColors.Charcoal,
           }, 
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -43,6 +47,7 @@ const App: React.FC<IAppProps> = () => {
         },
         }}>
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="DeliveryFormScreen" component={DeliveryFormScreen} />
           <Stack.Screen 
             name="Inventory" 
             options={{

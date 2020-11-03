@@ -23,7 +23,7 @@ export default function HomeScreen({navigation}:{navigation:any}) {
             <Button 
                 containerStyle={{width: 200}}
                 title="Login"
-                onPress={() => navigation.navigate('Inventory')}
+                onPress={() => navigation.navigate('DeliveryFormScreen')}
             />
         </View>
     )
