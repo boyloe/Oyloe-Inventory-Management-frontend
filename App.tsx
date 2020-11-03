@@ -4,11 +4,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Product } from './types'
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
-import HomeScreen from './components/HomeScreen'
+import LoginScreen from './components/LoginScreen'
 import Inventory from './components/Inventory'
-import DeliveryFormScreen from './components/DeliveryFormScreen';
+import { DeliveryFormScreen } from './components/DeliveryFormScreen';
+import HomeScreen from './components/HomeScreen';
 import {dataBlueColors as Colors} from './assets/ColorPalette'
 import {funColors} from './assets/ColorPalette'
+import NewDeliveryScreen from './components/NewDeliveryScreen';
 
 
 const baseURL = "https://oyloe-inventory-management.herokuapp.com"
@@ -46,8 +48,9 @@ const App: React.FC<IAppProps> = () => {
           fontWeight: 'bold',
         },
         }}>
+          <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="DeliveryFormScreen" component={DeliveryFormScreen} />
+          <Stack.Screen name="NewDeliveryScreen" component={NewDeliveryScreen} />
           <Stack.Screen 
             name="Inventory" 
             options={{
@@ -55,6 +58,13 @@ const App: React.FC<IAppProps> = () => {
     
               }}>
             {(props) => <Inventory products={products} {...props} />}
+            </Stack.Screen>
+          <Stack.Screen 
+            name="DeliveryFormScreen" 
+            options={{
+              title:"Add Product To Delivery",    
+              }}>
+            {(props) => <DeliveryFormScreen products={products} {...props} />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

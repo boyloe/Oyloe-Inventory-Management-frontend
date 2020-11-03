@@ -1,25 +1,47 @@
 import React, {useState} from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Text } from 'react-native';
 import { Button, colors } from 'react-native-elements'
-import { Formik } from 'formik';
+import { Formik, prepareDataForValidation } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
 import {dataBlueColors as Colors} from '../assets/ColorPalette'
 import {funColors} from '../assets/ColorPalette'
+import { Product } from '../types'
 
 
 export interface HomeScreenProps {
     navigation: NavigationScreenProp<any,any>;
+    products: Product[]
 }
 
-export default function DeliveryFormScreen({navigation}:{navigation:any}) {
+export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
-    const [productsDelivered, setProductsDelivered] = useState({})
+
+//     //_onPress = (country, country_code, calling_code) => {
+//   const { navigation, route } = this.props;
+//   navigation.navigate('NameOfThePreviousScreen', {
+//     selection: {
+//       country_name: country,
+//       country_code: country_code,
+//       calling_code: calling_code
+//     }
+//   });
+// };
+    const addProductToDelivery = (values:{}) => {
+        console.log(values)
+        navigation.navigate('NewDeliveryScreen', {
+            product: values
+        })
+    }
+
+
+    
     return (
-        //Some form of display to show what is already in the delivery, and a way to delete items 
         <Formik
             initialValues={{ name: '', quantity: ''}}
-            onSubmit={values => console.log(values)}
+            onSubmit={values => addProductToDelivery(values)}
+                        
         >
+            
             {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View style={styles.container}>
                 <TextInput
@@ -37,17 +59,18 @@ export default function DeliveryFormScreen({navigation}:{navigation:any}) {
                 value={values.quantity}
                 />
                 {/* Need another button to add product to delivery, and one to search for existing product(maybe drop down) */}
-                <Button buttonStyle={{backgroundColor: funColors.Charcoal}} onPress={handleSubmit as any} title="Create Delivery Ticket" />
+                <Button style={{backgroundColor: funColors.Charcoal}} onPress={handleSubmit as any} title="Add Product To Delivery" />
             </View>
             )}
         </Formik>
     )
+
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.darkGray,
+        backgroundColor: Colors.liteGray,
         alignItems: 'center',
         justifyContent: 'center',
     },
