@@ -15,15 +15,14 @@ const NewDeliveryScreen:React.FC<NewDeliveryScreenProps> = ({navigation,route}) 
 
     const [productsDelivered, setProductsDelivered] = useState([{
         name: '',
-        quantity: 0
+        quantity: ''
     }])
     let params = route.params
     useEffect(() => {
         console.log({params})
         if (params != undefined || params != route.params) {
             const {product} = route.params
-            const parsedQuantity:number = parseInt(product.quantity)
-            setProductsDelivered([...productsDelivered, {name: product.name, quantity: parsedQuantity}])
+            setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])
             params = route.params
         } 
         
@@ -32,7 +31,7 @@ const NewDeliveryScreen:React.FC<NewDeliveryScreenProps> = ({navigation,route}) 
     const displayProductsDelivered = () => {
         console.log({productsDelivered})
         return productsDelivered.map((product,index) => {
-                return <Text key={index}>{product.name}: {product.quantity}</Text>
+                return <Text key={index}>{product.name} {product.quantity}</Text>
         })
     }
 
@@ -42,9 +41,15 @@ const NewDeliveryScreen:React.FC<NewDeliveryScreenProps> = ({navigation,route}) 
             {displayProductsDelivered()}
             <Button 
                 style={styles.buttons}
-                title="Add Product to Delivery"
+                title="Add Product to Ticket"
                 onPress={() => navigation.navigate('DeliveryFormScreen')}
             />    
+            <Button 
+                style={styles.buttons}
+                title="Submit Delivery Ticket"
+                //onPress={() => //SomeFunction that submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
+            />    
+
         </View>
     )
 
