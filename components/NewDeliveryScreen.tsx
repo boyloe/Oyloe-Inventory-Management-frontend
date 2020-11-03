@@ -15,15 +15,25 @@ const NewDeliveryScreen:React.FC<NewDeliveryScreenProps> = ({navigation,route}) 
 
     const [productsDelivered, setProductsDelivered] = useState([{
         name: '',
-        quantity: 1
+        quantity: 0
     }])
-    
+    let params = route.params
     useEffect(() => {
-
+        console.log({params})
+        if (params != undefined || params != route.params) {
+            const {product} = route.params
+            const parsedQuantity:number = parseInt(product.quantity)
+            setProductsDelivered([...productsDelivered, {name: product.name, quantity: parsedQuantity}])
+            params = route.params
+        } 
+        
     }, [route.params])
 
     const displayProductsDelivered = () => {
-        
+        console.log({productsDelivered})
+        return productsDelivered.map((product,index) => {
+                return <Text key={index}>{product.name}: {product.quantity}</Text>
+        })
     }
 
 

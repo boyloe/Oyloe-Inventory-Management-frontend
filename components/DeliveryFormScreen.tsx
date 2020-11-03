@@ -27,7 +27,6 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 //   });
 // };
     const addProductToDelivery = (values:{}) => {
-        console.log(values)
         navigation.navigate('NewDeliveryScreen', {
             product: values
         })

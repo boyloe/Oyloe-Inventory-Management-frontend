@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import { View, Text, StatusBar, SafeAreaView, FlatList, StyleSheet} from 'react-native'
+import { Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
 import { TextInput } from 'react-native-gesture-handler'
+import {funColors} from '../assets/ColorPalette'
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
@@ -52,6 +54,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
                     return product._id}
                 }
             />
+            <Button style={{backgroundColor: funColors.Charcoal}} title="Add Product To Delivery" />
         </SafeAreaView>        
     )
 }

@@ -18,6 +18,7 @@ export default function LoginScreen({navigation}:{navigation:any}) {
             />
             <Input
                 placeholder='Password'
+                secureTextEntry={true}
                 leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
             />
             <Button 
