@@ -3,12 +3,15 @@ import { Button, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import  HomeScreen from './HomeScreen'
+import NewDeliveryScreen from './DeliveryScreen';
+import { DeliveryFormScreen } from './DeliveryFormScreen';
 
-export const HomeStackScreen = () =>{
-    const HomeStack = createStackNavigator()
+export const DeliveryStackScreen = () =>{
+    const DeliveryStack = createStackNavigator()
     return (
-        <HomeStack.Navigator>
-            <HomeStack.Screen name="Home" component={HomeScreen} />
-        </HomeStack.Navigator>
+        <DeliveryStack.Navigator>
+            <DeliveryStack.Screen name="Delivery" component={NewDeliveryScreen} />
+            <DeliveryStack.Screen name="DeliveryFormScreen" component={DeliveryFormScreen} />
+        </DeliveryStack.Navigator>
     )
 } 

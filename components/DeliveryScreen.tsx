@@ -5,13 +5,13 @@ import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
 
-export interface NewDeliveryScreenProps {
+export interface DeliveryScreenProps {
     navigation: NavigationScreenProp<any,any>;
     route: any
     products: Product[]
 }
 
-const NewDeliveryScreen:React.FC<NewDeliveryScreenProps> = ({navigation,route}) => {
+const NewDeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
 
     const [productsDelivered, setProductsDelivered] = useState([{
         name: '',

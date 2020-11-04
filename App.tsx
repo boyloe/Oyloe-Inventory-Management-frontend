@@ -5,14 +5,16 @@ import { Product } from './types'
 import {NavigationContainer, StackActions} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
-import LoginScreen from './components/LoginScreen'
-import Inventory from './components/Inventory'
+
+import InventoryScreen from './components/InventoryScreen'
 import { DeliveryFormScreen } from './components/DeliveryFormScreen';
-import HomeScreen from './components/HomeScreen';
+
 import {dataBlueColors as Colors} from './assets/ColorPalette'
 import {funColors} from './assets/ColorPalette'
-import NewDeliveryScreen from './components/NewDeliveryScreen';
 import { HomeStackScreen } from './components/HomeStackScreen';
+import { DeliveryStackScreen } from './components/DeliveryStackScreen';
+import { InventoryStackScreen } from './components/InventoryStackScreen';
+import { LoginStackScreen } from './components/LoginStackScreen';
 
 
 const baseURL = "https://oyloe-inventory-management.herokuapp.com"
@@ -48,23 +50,15 @@ const App: React.FC<IAppProps> = () => {
             inactiveTintColor: 'gray'
           }}  
         >
-          <Tab.Screen name="Login" component={LoginScreen} />
+          <Tab.Screen name="Login" component={LoginStackScreen} />
           <Tab.Screen name="Home" component={HomeStackScreen} />
-          <Tab.Screen name="NewDeliveryScreen" component={NewDeliveryScreen} options={{title:"Delivery"}} />
-          <Tab.Screen 
-            name="Inventory" 
-            options={{
-              title:"Inventory",
-              }}>
-            {(props:any) => <Inventory products={products} {...props} />}
-            </Tab.Screen>
-          <Tab.Screen 
-            name="DeliveryFormScreen" 
-            options={{
-              title:"Delivery",    
-              }}>
-            {(props:any) => <DeliveryFormScreen products={products} {...props} />}
-          </Tab.Screen>
+          <Tab.Screen name="Delivery" component={DeliveryStackScreen} />
+          <Tab.Screen name="Inventory" 
+                options={{
+                    title:"Inventory",
+                    }}>
+                {(props:any) => <InventoryStackScreen products={products} {...props} /> }
+          </Tab.Screen>              
         </Tab.Navigator>
       </NavigationContainer>
     );
