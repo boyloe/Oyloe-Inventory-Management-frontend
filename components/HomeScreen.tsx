@@ -16,7 +16,7 @@ export default function HomeScreen({navigation}:{navigation:any}) {
             <Button 
                 style={styles.buttons}
                 title="Input New Delivery"
-                onPress={() => navigation.navigate('NewDeliveryScreen')}
+                onPress={() => navigation.navigate('Delivery')}
             />
             <Button 
                 style={styles.buttons}
