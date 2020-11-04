@@ -54,7 +54,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
                     return product._id}
                 }
             />
-            <Button style={{backgroundColor: funColors.Charcoal}} title="Add Product To Delivery" />
+            <Button style={{backgroundColor: funColors.Charcoal}} title="Submit Daily Inventory" />
         </SafeAreaView>        
     )
 }
