@@ -5,23 +5,26 @@ import {  NavigationScreenProp } from 'react-navigation'
 
 
 
-export interface HomeScreenProps {
+export interface LoginScreenProps {
     navigation: NavigationScreenProp<any,any>;
 }
-export default function HomeScreen({navigation}:{navigation:any}) {
+export default function LoginScreen({navigation}:{navigation:any}) {
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>Oyloe Inventory Management System</Text>
-            
-            <Button 
-                style={styles.buttons}
-                title="Input New Delivery"
-                onPress={() => navigation.navigate('NewDeliveryScreen')}
+            <Input
+                placeholder='Username'
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+            />
+            <Input
+                placeholder='Password'
+                secureTextEntry={true}
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
             />
             <Button 
-                style={styles.buttons}
-                title="Input Daily Inventory"
-                onPress={() => navigation.navigate('Inventory')}
+                style={{width: 200}}
+                title="Login"
+                onPress={() => navigation.navigate('Home')}
             />
         </View>
     )
@@ -35,14 +38,6 @@ const styles= StyleSheet.create({
     },
     titleText: {
         fontSize: 28, 
-        textAlign: 'center',
-        flex: 1,
-        padding: 20
-
-
-    },
-    buttons: {
-        width: 200, 
-        padding:4, 
-        margin:10}
+        textAlign: 'center'
+    }
 })
