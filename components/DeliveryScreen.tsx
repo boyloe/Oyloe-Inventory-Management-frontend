@@ -4,6 +4,7 @@ import { Button, Input, ListItem } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
+import { baseURL } from '../App'
 
 export interface DeliveryScreenProps {
     navigation: NavigationScreenProp<any,any>;
@@ -11,7 +12,7 @@ export interface DeliveryScreenProps {
     products: Product[]
 }
 
-const NewDeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
+const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
 
     const [productsDelivered, setProductsDelivered] = useState([{
         name: '',
@@ -34,8 +35,16 @@ const NewDeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => 
                 return <Text key={index}>{product.name} {product.quantity}</Text>
         })
     }
-
-
+    //submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
+    const handleDeliverySubmit = () => {
+        fetch(`${baseURL}/deliveries`, {
+            method: 'POST',
+            headers: {
+                "Content-Type" : 'application/json'
+            },
+            body: JSON.stringify(productsDelivered)
+        }).then(console.log)            
+    }
     return(
         <View style={styles.container}>
             {displayProductsDelivered()}
@@ -47,7 +56,7 @@ const NewDeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => 
             <Button 
                 style={styles.buttons}
                 title="Submit Delivery Ticket"
-                //onPress={() => //SomeFunction that submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
+                onPress={handleDeliverySubmit}  
             />    
 
         </View>
@@ -76,4 +85,4 @@ const styles= StyleSheet.create({
         margin:10}
 })
     
-export default NewDeliveryScreen
+export default DeliveryScreen

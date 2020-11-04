@@ -17,7 +17,7 @@ import { InventoryStackScreen } from './components/InventoryStackScreen';
 import { LoginStackScreen } from './components/LoginStackScreen';
 
 
-const baseURL = "https://oyloe-inventory-management.herokuapp.com"
+export const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 export interface IAppProps {
   products: Product[]
 }
