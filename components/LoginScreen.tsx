@@ -1,7 +1,9 @@
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
-import { Button, Input } from 'react-native-elements'
+import { Input, Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
+import { brownPalette } from '../assets/ColorPalette'
+
 
 
 
@@ -14,15 +16,17 @@ export default function LoginScreen({navigation}:{navigation:any}) {
             <Text style={styles.titleText}>Oyloe Inventory Management System</Text>
             <Input
                 placeholder='Username'
+                placeholderTextColor={brownPalette.brown7}
                 leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
             />
             <Input
                 placeholder='Password'
                 secureTextEntry={true}
+                placeholderTextColor={brownPalette.brown7}
                 leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
             />
             <Button 
-                style={{width: 200}}
+                buttonStyle={styles.button}                
                 title="Login"
                 onPress={() => navigation.navigate('Home')}
             />
@@ -34,10 +38,22 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor: brownPalette.brown1        
+        
     },
     titleText: {
         fontSize: 28, 
-        textAlign: 'center'
+        textAlign: 'center',
+        color: brownPalette.brown10
+        
+    },
+    button: {
+        backgroundColor: brownPalette.brownBase,
+        width: 200
+    },
+    input: {
+
     }
+    
 })

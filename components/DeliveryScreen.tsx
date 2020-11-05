@@ -1,10 +1,11 @@
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
-import { Button, Input, ListItem } from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
-import { baseURL } from '../App'
+
+const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 
 export interface DeliveryScreenProps {
     navigation: NavigationScreenProp<any,any>;
@@ -42,8 +43,8 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
             headers: {
                 "Content-Type" : 'application/json'
             },
-            body: JSON.stringify(productsDelivered)
-        }).then(console.log)            
+            body: JSON.stringify({productsDelivered})
+        }).then(console.log)         
     }
     return(
         <View style={styles.container}>

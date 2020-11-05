@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
 import { TextInput } from 'react-native-gesture-handler'
-import {funColors} from '../assets/ColorPalette'
+import {funColors, brownPalette} from '../assets/ColorPalette'
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
@@ -54,7 +54,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
                     return product._id}
                 }
             />
-            <Button style={{backgroundColor: funColors.Charcoal}} title="Submit Daily Inventory" />
+            <Button buttonStyle={{backgroundColor: brownPalette.brownBase}} title="Submit Daily Inventory" />
         </SafeAreaView>        
     )
 }
@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
         // '#003f5c'
         // '#7a5195' Purple
         // "#ef5675"
-        '#ffa600'
+        '#888'
     },
     item: {
-        backgroundColor: '#73ab84',
+        backgroundColor: brownPalette.brown1,
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
