@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import  InventoryScreen from './InventoryScreen'
 import { Product } from '../types'
+import { brownPalette } from '../assets/ColorPalette';
 
 export interface InventoryProps {
     products: Product[]
@@ -12,7 +13,13 @@ export interface InventoryProps {
 export const InventoryStackScreen:React.FC<InventoryProps> = ({ products }) =>{
     const InventoryScreenStack = createStackNavigator()
     return (
-        <InventoryScreenStack.Navigator>
+        <InventoryScreenStack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: brownPalette.brown6
+                }
+        }}
+        >
             <InventoryScreenStack.Screen name="Inventory" 
                 options={{
                     title:"Inventory",

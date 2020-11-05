@@ -11,6 +11,9 @@ import { HomeStackScreen } from './components/HomeStackScreen';
 import { DeliveryStackScreen } from './components/DeliveryStackScreen';
 import { InventoryStackScreen } from './components/InventoryStackScreen';
 import { LoginStackScreen } from './components/LoginStackScreen';
+import   { MaterialCommunityIcons } from '@expo/vector-icons/'
+import   { FontAwesome5 } from '@expo/vector-icons/'
+
 
 
 
@@ -42,12 +45,29 @@ const App: React.FC<IAppProps> = () => {
     return (
       <NavigationContainer>        
         <Tab.Navigator 
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size}) => {
+              let iconName;
+              if (route.name === 'Home') {
+                iconName = 'home'
+              } else if (route.name === 'Delivery') {
+                iconName = 'truck-delivery'
+              } else if (route.name === 'Login') {
+                iconName = 'login'
+              } else {
+                iconName = 'boxes'
+                return <FontAwesome5 name={iconName} color={brownPalette.brown8} size={size} />
+              }
+              return <MaterialCommunityIcons name={iconName} color={brownPalette.brown8} size={size} />
+            },
+          })}
           tabBarOptions={{
-            activeTintColor: brownPalette.brown2,
-            inactiveTintColor: grayPalette.gray6
+            style: {backgroundColor: brownPalette.brown6},
+            activeTintColor: brownPalette.brown1,
+            inactiveTintColor: grayPalette.gray8,
           }}  
         >
-          <Tab.Screen name="Login" component={LoginStackScreen} />
+          <Tab.Screen name="Login" component={LoginStackScreen}  />
           <Tab.Screen name="Home" component={HomeStackScreen} />
           <Tab.Screen name="Delivery" component={DeliveryStackScreen} />
           <Tab.Screen name="Inventory" 

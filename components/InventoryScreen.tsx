@@ -4,8 +4,8 @@ import { View, Text, StatusBar, SafeAreaView, FlatList, StyleSheet} from 'react-
 import { Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
-import { TextInput } from 'react-native-gesture-handler'
-import {funColors, brownPalette} from '../assets/ColorPalette'
+import { TextInput, ScrollView } from 'react-native-gesture-handler'
+import {funColors, brownPalette, grayPalette} from '../assets/ColorPalette'
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
@@ -53,8 +53,17 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
                 keyExtractor={(product) => {
                     return product._id}
                 }
-            />
-            <Button buttonStyle={{backgroundColor: brownPalette.brownBase}} title="Submit Daily Inventory" />
+                ListFooterComponent={<Button 
+                                        buttonStyle={{
+                                            backgroundColor: brownPalette.brownBase,
+                                            padding: 10                                           
+
+                                            }}
+                                        title="Submit Daily Inventory"
+                                        titleStyle={{color: brownPalette.brown1}}
+                                        containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center' }}
+                                         />}
+            />               
         </SafeAreaView>        
     )
 }
@@ -63,21 +72,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
-        backgroundColor: 
-        // '#003f5c'
-        // '#7a5195' Purple
-        // "#ef5675"
-        '#888'
+        backgroundColor: brownPalette.brown1
     },
     item: {
-        backgroundColor: brownPalette.brown1,
+        backgroundColor: brownPalette.brown4,
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        flex: 1
 
     },
     name: {
