@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import  HomeScreen from './HomeScreen'
 import NewDeliveryScreen from './DeliveryScreen';
 import { DeliveryFormScreen } from './DeliveryFormScreen';
 import { brownPalette} from '../assets/ColorPalette'
+import { FontAwesome5 } from '@expo/vector-icons/'
+
 
 export const DeliveryStackScreen = () =>{
     const DeliveryStack = createStackNavigator()
@@ -21,6 +20,11 @@ export const DeliveryStackScreen = () =>{
             },
             headerStyle: {
                 backgroundColor: brownPalette.brown3
+            },
+            headerBackImage: () => <FontAwesome5 name='chevron-left' size={24} color={brownPalette.brown7}/>,
+            headerBackTitle: 'Back',           
+            headerBackTitleStyle: {
+                color: brownPalette.brown7
             }
         }}
         >

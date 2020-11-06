@@ -54,7 +54,7 @@ const styles= StyleSheet.create({
     button: {
         backgroundColor: brownPalette.brownBase,
         width: 200,
-        color: brownPalette.brown
+        color: brownPalette.brownBase
     },
     input: {
 

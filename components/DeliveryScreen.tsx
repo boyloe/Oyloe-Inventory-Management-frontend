@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
-import { Button } from 'react-native-elements'
+import { Button, Divider } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
@@ -22,7 +22,6 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }])
     let params = route.params
     useEffect(() => {
-        console.log({params})
         if (params != undefined || params != route.params) {
             const {product} = route.params
             setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])
@@ -32,7 +31,6 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }, [route.params])
 
     const displayProductsDelivered = () => {
-        console.log({productsDelivered})
         return productsDelivered.map((product,index) => {
                 return <Text key={index}>{product.name} {product.quantity}</Text>
         })
@@ -50,19 +48,19 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     return(
         <View style={styles.container}>
             {displayProductsDelivered()}
+            <Divider style={{backgroundColor: brownPalette.brown10,height:5}} />
             <Button 
-                buttonStyle={styles.buttons}
+                buttonStyle={styles.buttonStyle}
                 title="Add Product to Ticket"
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                titleStyle={styles.titleStyle}
                 onPress={() => navigation.navigate('DeliveryFormScreen')}
-            />    
+            />   
             <Button 
-                buttonStyle={styles.buttons}
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                buttonStyle={styles.buttonStyle}
+                titleStyle={styles.titleStyle}
                 title="Submit Delivery Ticket"
                 onPress={handleDeliverySubmit}  
-            />    
-
+            />   
         </View>
     )
 
@@ -73,8 +71,9 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'center',
-        backgroundColor: brownPalette.brown1
+        justifyContent:'flex-end',
+        backgroundColor: brownPalette.brown1,
+        paddingBottom: 20
 
     },
     titleText: {
@@ -85,12 +84,17 @@ const styles= StyleSheet.create({
 
 
     },
-    buttons: {
+    buttonStyle: {
         backgroundColor: brownPalette.brownBase,
         borderRadius: 12,
         width: 200, 
-        padding:4, 
-        margin:10}
+        padding:8, 
+        margin:10
+    },
+    titleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10
+    }
 })
     
 export default DeliveryScreen
