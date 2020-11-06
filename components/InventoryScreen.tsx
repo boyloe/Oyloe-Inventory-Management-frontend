@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import { View, Text, StatusBar, SafeAreaView, StyleSheet, FlatList } from 'react-native'
-import { Button, Input} from 'react-native-elements'
+import { Button} from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
-import { TextInput, ScrollView } from 'react-native-gesture-handler'
-import {funColors, brownPalette, grayPalette} from '../assets/ColorPalette'
+import { TextInput} from 'react-native-gesture-handler'
+import { brownPalette } from '../assets/ColorPalette'
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
@@ -23,7 +23,21 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
         quantity: 0
     }])
 
-    useEffect(() => setInventory(products as Product[]),[])
+    useEffect(() => {        
+        const sortedProducts =  products.sort(function(a, b) {
+            let nameProductA = a.name.toUpperCase(); // ignore upper and lowercase
+            let nameProductB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (nameProductA < nameProductB) {
+                return -1;
+            }
+            if (nameProductA > nameProductB) {
+                return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+        setInventory(sortedProducts as Product[])
+    },[])
 
     const renderInventory = ({ item }:{item:Product}) => (
         <Item name={item.name} quantity={item.quantity} key={item._id} description={item.description}/>
@@ -91,7 +105,7 @@ const styles = StyleSheet.create({
         
 
     },
-    productContainer: {
+    productInfoContainer: {
         
     },
     name: {
