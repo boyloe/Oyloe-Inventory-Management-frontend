@@ -19,14 +19,14 @@ export default function HomeScreen({navigation}:{navigation:any}) {
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button 
-                        buttonStyle={styles.buttons}
+                        buttonStyle={styles.buttonStyle}
                         title="Input New Delivery"
-                        titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                        titleStyle={styles.buttonTitleStyle}
                         onPress={() => navigation.navigate('Delivery')}
                     />
                     <Button 
-                        buttonStyle={styles.buttons}
-                        titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                        buttonStyle={styles.buttonStyle}
+                        titleStyle={styles.buttonTitleStyle}
                         title="Input Daily Inventory"
                         onPress={() => navigation.navigate('Inventory')}
                     />
@@ -43,15 +43,16 @@ const styles= StyleSheet.create({
         backgroundColor: brownPalette.brown1
 
     },   
-    buttons: {
+    buttonStyle: {
         backgroundColor: brownPalette.brownBase,
-        width: 100, 
-        padding:4, 
-        margin:10
+        width: 240,  
+        paddingVertical: 10,
+        margin:10,
+        borderRadius: 7
     },
     buttonContainer: {
         flex:1,
-        flexDirection: 'row'
+        flexDirection: 'column'
     },
     imageContainer: {
         flex: 1,
@@ -61,5 +62,10 @@ const styles= StyleSheet.create({
     image: {
         height: 250,
         width: 250
+    },
+    buttonTitleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10,
+        fontWeight: '700'
     }
 })

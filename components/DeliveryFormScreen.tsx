@@ -58,9 +58,9 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                 value={values.quantity}
                 />
                 {/* Need another button to add product to delivery, and one to search for existing product(maybe drop down) */}
-                <Button buttonStyle={{backgroundColor: brownPalette.brownBase}}
-                        titleStyle={{fontFamily: 'Futura'}}
-                        onPress={handleSubmit as any} title="Add Product To Delivery" />
+                <Button buttonStyle={styles.buttonStyle}
+                        titleStyle={styles.buttonTitleStyle}
+                        onPress={handleSubmit as any} title="Add Product To Delivery Ticket" />
             </View>
             )}
         </Formik>
@@ -83,5 +83,17 @@ const styles = StyleSheet.create({
         width: '50%',
         padding: 10,
         margin: 10
-    }
+    },
+    buttonTitleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10,
+        fontWeight: '700'
+    },
+    buttonStyle: {
+        backgroundColor: brownPalette.brownBase,
+        width: 240,  
+        paddingVertical: 10,
+        margin:10,
+        borderRadius: 7
+    },
 });

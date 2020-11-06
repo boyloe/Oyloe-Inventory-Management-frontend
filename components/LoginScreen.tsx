@@ -58,6 +58,12 @@ const styles= StyleSheet.create({
     },
     input: {
 
+    },
+    imageContainer: {
+
+    },
+    image: {
+        
     }
     
 })

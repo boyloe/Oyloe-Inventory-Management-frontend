@@ -47,20 +47,23 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            {displayProductsDelivered()}
-            <Divider style={{backgroundColor: brownPalette.brown10,height:5}} />
-            <Button 
-                buttonStyle={styles.buttonStyle}
-                title="Add Product to Ticket"
-                titleStyle={styles.titleStyle}
-                onPress={() => navigation.navigate('DeliveryFormScreen')}
-            />   
-            <Button 
-                buttonStyle={styles.buttonStyle}
-                titleStyle={styles.titleStyle}
-                title="Submit Delivery Ticket"
-                onPress={handleDeliverySubmit}  
-            />   
+            <View style={styles.productsDeliveredContainer}>
+                {displayProductsDelivered()}
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button 
+                    buttonStyle={styles.buttonStyle}
+                    title="Add Product to Ticket"
+                    titleStyle={styles.titleStyle}
+                    onPress={() => navigation.navigate('DeliveryFormScreen')}
+                />   
+                <Button 
+                    buttonStyle={styles.buttonStyle}
+                    titleStyle={styles.titleStyle}
+                    title="Submit Delivery Ticket"
+                    onPress={handleDeliverySubmit}  
+                />   
+            </View>
         </View>
     )
 
@@ -73,23 +76,29 @@ const styles= StyleSheet.create({
         alignItems: 'center', 
         justifyContent:'flex-end',
         backgroundColor: brownPalette.brown1,
-        paddingBottom: 20
+        paddingVertical: 20
 
     },
-    titleText: {
-        fontSize: 28, 
-        textAlign: 'center',
-        flex: 1,
-        padding: 20
-
-
+    productsDeliveredContainer: {
+        flex: 3,
+        marginVertical:20,
+        borderWidth:1,
+        borderColor: '#000',
     },
     buttonStyle: {
         backgroundColor: brownPalette.brownBase,
-        borderRadius: 12,
-        width: 200, 
-        padding:8, 
-        margin:10
+        width: 240,  
+        paddingVertical: 10,
+        margin:10,
+        borderRadius: 7
+    },
+    buttonContainer: {
+        flex:1,
+        borderWidth:1,
+        borderColor: '#000',
+
+        justifyContent: 'flex-end',
+        flexDirection: 'column'
     },
     titleStyle: {
         fontFamily: 'Futura', 
