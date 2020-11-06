@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, Image} from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
@@ -13,20 +13,24 @@ export interface LoginScreenProps {
 export default function LoginScreen({navigation}:{navigation:any}) {
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>Oyloe Inventory Management System</Text>
+            <View style={styles.imageContainer}>
+                    <Image source={require('../assets/images/OIMSLogo.png')}
+                    style={styles.image} />
+            </View>
             <Input
                 placeholder='Username'
                 placeholderTextColor={brownPalette.brown7}
-                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
             />
             <Input
                 placeholder='Password'
                 secureTextEntry={true}
                 placeholderTextColor={brownPalette.brown7}
-                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
             />
             <Button 
-                buttonStyle={styles.button}                
+                buttonStyle={styles.button}
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
                 title="Login"
                 onPress={() => navigation.navigate('Home')}
             />
@@ -45,12 +49,12 @@ const styles= StyleSheet.create({
     titleText: {
         fontSize: 28, 
         textAlign: 'center',
-        color: brownPalette.brown10
         
     },
     button: {
         backgroundColor: brownPalette.brownBase,
-        width: 200
+        width: 200,
+        color: brownPalette.brown
     },
     input: {
 

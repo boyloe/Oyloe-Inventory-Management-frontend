@@ -11,6 +11,7 @@ import { HomeStackScreen } from './components/HomeStackScreen';
 import { DeliveryStackScreen } from './components/DeliveryStackScreen';
 import { InventoryStackScreen } from './components/InventoryStackScreen';
 import { LoginStackScreen } from './components/LoginStackScreen';
+
 import   { MaterialCommunityIcons } from '@expo/vector-icons/'
 import   { FontAwesome5 } from '@expo/vector-icons/'
 
@@ -22,7 +23,7 @@ export interface IAppProps {
   products: Product[]
 }
 const Tab = createBottomTabNavigator()
-const stack = createStackNavigator()
+const Stack = createStackNavigator()
 
 const App: React.FC<IAppProps> = () => {
 
@@ -43,10 +44,10 @@ const App: React.FC<IAppProps> = () => {
   }, [])
 
     return (
-      <NavigationContainer>        
+      <NavigationContainer>      
         <Tab.Navigator 
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size}) => {
+            tabBarIcon: ({ size }) => {
               let iconName;
               if (route.name === 'Home') {
                 iconName = 'home'
@@ -56,15 +57,21 @@ const App: React.FC<IAppProps> = () => {
                 iconName = 'login'
               } else {
                 iconName = 'boxes'
-                return <FontAwesome5 name={iconName} color={brownPalette.brown8} size={size} />
+                return <FontAwesome5 name={iconName} color={brownPalette.brown10} size={24} />
               }
-              return <MaterialCommunityIcons name={iconName} color={brownPalette.brown8} size={size} />
-            },
+              return <MaterialCommunityIcons name={iconName} color={brownPalette.brown10} size={24} />
+            }, 
           })}
           tabBarOptions={{
-            style: {backgroundColor: brownPalette.brown6},
-            activeTintColor: brownPalette.brown1,
-            inactiveTintColor: grayPalette.gray8,
+            style: {backgroundColor: brownPalette.brown3},
+            activeTintColor: brownPalette.brown8,
+            inactiveTintColor: grayPalette.gray9,
+            labelStyle: {
+              fontSize:14,
+              fontFamily: 'Futura'
+            },
+            keyboardHidesTabBar: true
+            
           }}  
         >
           <Tab.Screen name="Login" component={LoginStackScreen}  />
@@ -73,6 +80,7 @@ const App: React.FC<IAppProps> = () => {
           <Tab.Screen name="Inventory" 
                 options={{
                     title:"Inventory",
+                    
                     }}>
                 {(props:any) => <InventoryStackScreen products={products} {...props} /> }
           </Tab.Screen>              

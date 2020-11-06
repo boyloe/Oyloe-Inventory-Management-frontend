@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { View, Text, StatusBar, SafeAreaView, FlatList, StyleSheet} from 'react-native'
-import { Button } from 'react-native-elements'
+import { View, Text, StatusBar, SafeAreaView, StyleSheet, FlatList } from 'react-native'
+import { Button, colors,} from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
 import { TextInput, ScrollView } from 'react-native-gesture-handler'
@@ -56,13 +56,12 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
                 ListFooterComponent={<Button 
                                         buttonStyle={{
                                             backgroundColor: brownPalette.brownBase,
-                                            padding: 10                                           
-
+                                            padding: 10,
                                             }}
                                         title="Submit Daily Inventory"
                                         titleStyle={{color: brownPalette.brown1}}
-                                        containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center' }}
-                                         />}
+                                        containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center', marginBottom:40 }}
+                                        />}
             />               
         </SafeAreaView>        
     )
@@ -83,12 +82,17 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 10,
-        flex: 1
+        height: 250,
+        shadowOffset: {width:10, height:10},
+        shadowOpacity: 0.4,
+        shadowColor: brownPalette.brown9
+        
 
     },
     name: {
-        fontSize: 18,
-        fontFamily: 'Futura'
+        fontSize: 32,
+        fontFamily: 'Futura',
+        color: brownPalette.brown10
 
     },
     textInput: {
@@ -102,11 +106,13 @@ const styles = StyleSheet.create({
         
     },
     description: {
-        fontSize:16,
-        fontFamily:'Futura'
+        fontSize:20,
+        fontFamily:'Futura', 
+        color: brownPalette.brown7
     },
     productInfo: {
-        width: 150
+        width: 150,
+        color: brownPalette.brown7
     }
 });
 

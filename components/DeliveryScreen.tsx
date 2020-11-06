@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
+import { brownPalette } from '../assets/ColorPalette'
 
 const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 
@@ -44,18 +45,20 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
                 "Content-Type" : 'application/json'
             },
             body: JSON.stringify({productsDelivered})
-        }).then(console.log)         
+        })        
     }
     return(
         <View style={styles.container}>
             {displayProductsDelivered()}
             <Button 
-                style={styles.buttons}
+                buttonStyle={styles.buttons}
                 title="Add Product to Ticket"
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
                 onPress={() => navigation.navigate('DeliveryFormScreen')}
             />    
             <Button 
-                style={styles.buttons}
+                buttonStyle={styles.buttons}
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
                 title="Submit Delivery Ticket"
                 onPress={handleDeliverySubmit}  
             />    
@@ -70,7 +73,9 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor: brownPalette.brown1
+
     },
     titleText: {
         fontSize: 28, 
@@ -81,6 +86,8 @@ const styles= StyleSheet.create({
 
     },
     buttons: {
+        backgroundColor: brownPalette.brownBase,
+        borderRadius: 12,
         width: 200, 
         padding:4, 
         margin:10}
