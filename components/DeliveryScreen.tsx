@@ -31,9 +31,15 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }, [route.params])
 
     const displayProductsDelivered = () => {
-        return productsDelivered.map((product,index) => {
-                return <Text key={index}>{product.name} {product.quantity}</Text>
-        })
+        return productsDelivered.map((product,index) => (
+            <View style={{flexDirection: 'row'}} key={index}>
+                <Text>Name: {product.name}</Text>
+                <Text>Quantity: {product.quantity}</Text>
+            </View>
+        )
+
+                
+        )
     }
     //submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
     const handleDeliverySubmit = () => {
@@ -82,8 +88,6 @@ const styles= StyleSheet.create({
     productsDeliveredContainer: {
         flex: 3,
         marginVertical:20,
-        borderWidth:1,
-        borderColor: '#000',
     },
     buttonStyle: {
         backgroundColor: brownPalette.brownBase,
@@ -94,8 +98,7 @@ const styles= StyleSheet.create({
     },
     buttonContainer: {
         flex:1,
-        borderWidth:1,
-        borderColor: '#000',
+
 
         justifyContent: 'flex-end',
         flexDirection: 'column'
