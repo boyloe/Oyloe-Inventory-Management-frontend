@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import { View, Text, StatusBar, SafeAreaView, StyleSheet, FlatList } from 'react-native'
-import { Button, colors,} from 'react-native-elements'
+import { Button, Input} from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
 import { TextInput, ScrollView } from 'react-native-gesture-handler'
@@ -31,17 +31,18 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
 
     const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string}) => (
         <View style={styles.item} >
-            <View style={styles.productInfo}>
+            <View style={styles.productInfoContainer}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.description}>{description}</Text>
             </View>
-            <View>
-                <View style={{flexDirection:'row'}}>
-                    <Text style={styles.description}>Current Count: </Text>
-                    <TextInput style={styles.textInput} defaultValue={`${quantity}`}/>
+                <View style={styles.countContainer}>
+                    <View style={styles.currentCountContainer}>
+                        <Text style={styles.currentCount}>Current Count: </Text>
+                        <TextInput style={styles.Input} defaultValue={`${quantity}`}/>
+                    </View>    
+                    <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
                 </View>
-                <Text style={styles.description}>Previous Count: {quantity}</Text>
-            </View>
+
         </View>
     );
         
@@ -71,48 +72,68 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
-        backgroundColor: brownPalette.brown1
+        backgroundColor: brownPalette.brown1,
+        
     },
     item: {
         backgroundColor: brownPalette.brown4,
-        padding: 20,
+        padding: 15,
         marginVertical: 8,
         marginHorizontal: 16,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         borderRadius: 10,
         height: 250,
-        shadowOffset: {width:10, height:10},
+        shadowOffset: {width: 7, height: 7},
         shadowOpacity: 0.4,
         shadowColor: brownPalette.brown9
         
 
     },
+    productContainer: {
+        
+    },
     name: {
-        fontSize: 32,
+        fontSize: 34,
         fontFamily: 'Futura',
-        color: brownPalette.brown10
+        color: brownPalette.brown10,
+        alignSelf: 'flex-start'
 
     },
-    textInput: {
+    Input: {
         borderStyle: 'solid',
         borderWidth: 2,
-        borderColor: '#000',
-        backgroundColor: '#fff',
+        borderColor: brownPalette.brownBase,
+        backgroundColor: brownPalette.brown1,
         width: 40,
         textAlign: 'center',
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+
+        
         
     },
     description: {
         fontSize:20,
         fontFamily:'Futura', 
-        color: brownPalette.brown7
+        color: brownPalette.brown8,
+        alignSelf: 'flex-start'
     },
-    productInfo: {
-        width: 150,
-        color: brownPalette.brown7
+    countContainer: {
+        alignSelf: 'flex-end'
+    },
+    currentCountContainer: {
+        flexDirection: 'row'
+    },
+    currentCount: {
+        fontSize:20,
+        fontFamily:'Futura', 
+        color: brownPalette.brown8
+    },
+    previousCount: {
+        fontSize:20,
+        fontFamily:'Futura', 
+        color: brownPalette.brown8
     }
 });
 
