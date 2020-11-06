@@ -1,7 +1,9 @@
 import * as React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
-import { Button, Input } from 'react-native-elements'
+import {View, Text, StyleSheet, Image} from 'react-native'
+import { Input, Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
+import { brownPalette } from '../assets/ColorPalette'
+
 
 
 
@@ -11,18 +13,24 @@ export interface LoginScreenProps {
 export default function LoginScreen({navigation}:{navigation:any}) {
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>Oyloe Inventory Management System</Text>
+            <View style={styles.imageContainer}>
+                    <Image source={require('../assets/images/OIMSLogo.png')}
+                    style={styles.image} />
+            </View>
             <Input
                 placeholder='Username'
-                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+                placeholderTextColor={brownPalette.brown7}
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
             />
             <Input
                 placeholder='Password'
                 secureTextEntry={true}
-                leftIcon={{ type: 'font-awesome', name: 'chevron-right' }}
+                placeholderTextColor={brownPalette.brown7}
+                leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
             />
             <Button 
-                style={{width: 200}}
+                buttonStyle={styles.button}
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
                 title="Login"
                 onPress={() => navigation.navigate('Home')}
             />
@@ -34,10 +42,22 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor: brownPalette.brown1        
+        
     },
     titleText: {
         fontSize: 28, 
-        textAlign: 'center'
+        textAlign: 'center',
+        
+    },
+    button: {
+        backgroundColor: brownPalette.brownBase,
+        width: 200,
+        color: brownPalette.brown
+    },
+    input: {
+
     }
+    
 })

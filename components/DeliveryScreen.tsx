@@ -1,9 +1,12 @@
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
-import { Button, Input, ListItem } from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
+import { brownPalette } from '../assets/ColorPalette'
+
+const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 
 export interface DeliveryScreenProps {
     navigation: NavigationScreenProp<any,any>;
@@ -11,7 +14,7 @@ export interface DeliveryScreenProps {
     products: Product[]
 }
 
-const NewDeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
+const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
 
     const [productsDelivered, setProductsDelivered] = useState([{
         name: '',
@@ -34,20 +37,30 @@ const NewDeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => 
                 return <Text key={index}>{product.name} {product.quantity}</Text>
         })
     }
-
-
+    //submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
+    const handleDeliverySubmit = () => {
+        fetch(`${baseURL}/deliveries`, {
+            method: 'POST',
+            headers: {
+                "Content-Type" : 'application/json'
+            },
+            body: JSON.stringify({productsDelivered})
+        })        
+    }
     return(
         <View style={styles.container}>
             {displayProductsDelivered()}
             <Button 
-                style={styles.buttons}
+                buttonStyle={styles.buttons}
                 title="Add Product to Ticket"
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
                 onPress={() => navigation.navigate('DeliveryFormScreen')}
             />    
             <Button 
-                style={styles.buttons}
+                buttonStyle={styles.buttons}
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
                 title="Submit Delivery Ticket"
-                //onPress={() => //SomeFunction that submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
+                onPress={handleDeliverySubmit}  
             />    
 
         </View>
@@ -60,7 +73,9 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor: brownPalette.brown1
+
     },
     titleText: {
         fontSize: 28, 
@@ -71,9 +86,11 @@ const styles= StyleSheet.create({
 
     },
     buttons: {
+        backgroundColor: brownPalette.brownBase,
+        borderRadius: 12,
         width: 200, 
         padding:4, 
         margin:10}
 })
     
-export default NewDeliveryScreen
+export default DeliveryScreen

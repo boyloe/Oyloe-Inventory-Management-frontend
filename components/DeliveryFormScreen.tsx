@@ -3,7 +3,7 @@ import { TextInput, View, StyleSheet, Text } from 'react-native';
 import { Button, colors } from 'react-native-elements'
 import { Formik, prepareDataForValidation } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
-import {dataBlueColors as Colors} from '../assets/ColorPalette'
+import {dataBlueColors as Colors, brownPalette} from '../assets/ColorPalette'
 import {funColors} from '../assets/ColorPalette'
 import { Product } from '../types'
 
@@ -58,7 +58,9 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                 value={values.quantity}
                 />
                 {/* Need another button to add product to delivery, and one to search for existing product(maybe drop down) */}
-                <Button style={{backgroundColor: funColors.Charcoal}} onPress={handleSubmit as any} title="Add Product To Delivery" />
+                <Button buttonStyle={{backgroundColor: brownPalette.brownBase}}
+                        titleStyle={{fontFamily: 'Futura'}}
+                        onPress={handleSubmit as any} title="Add Product To Delivery" />
             </View>
             )}
         </Formik>
@@ -69,14 +71,14 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.liteGray,
+        backgroundColor: brownPalette.brown1,
         alignItems: 'center',
         justifyContent: 'center',
     },
     textBox: {
         borderStyle: 'solid',
         borderRadius: 8,
-        borderColor: funColors.Charcoal,
+        borderColor: brownPalette.brown8,
         borderWidth: 5,
         width: '50%',
         padding: 10,
