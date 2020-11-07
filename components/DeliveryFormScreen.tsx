@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { TextInput, View, StyleSheet} from 'react-native';
 import { Button, Divider} from 'react-native-elements'
-import {Picker} from 'react-native'
 import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
-import   DropDownPicker from 'react-native-dropdown-picker'
+import { Picker }  from 'react-native'
+
 
 
 
@@ -17,54 +17,58 @@ export interface HomeScreenProps {
 
 export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
-    
+    const [selectedProduct, setSelectedProduct] = useState('')
+    const [quantity, setQuantity] = useState('')
 
 
-    const addProductToDelivery = (values:{}) => {
+    const addProductToDelivery = () => {
         navigation.navigate('Delivery', {
-            product: values
+            product: {
+                name: selectedProduct,
+                quantity: quantity
+            }
         })
     }
 
     const getProductOptions = (products:Product[]) => {
         return products.map(product => {
-            return {label: product.name, value: product.name}
+            return <Picker.Item label={product.name} value={product.name} key={product._id} />
         })
     }
+
+    
 
 
     
     return (
-        <Formik
-            initialValues={{ name: products[0].name, quantity: '0'}}
-            onSubmit={values => addProductToDelivery(values)}
-                        
-        >
-            
-            {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
-            <View style={styles.container}>                         
-                <Picker 
-                    selectedValue={values.name}
-                    style={{height:60, width: 200, color:brownPalette.brown9, backgroundColor: brownPalette.brown2}}
-                    onValueChange={value => setFieldValue('name', value)}
+            <View style={styles.container}> 
+                <View style={styles.pickerContainer}>
+                    <Picker 
+                        selectedValue={selectedProduct}
+                        style={{height: 80, width: 200}}
+                        itemStyle={{height: 150, borderWidth:2, backgroundColor: brownPalette.brown3, borderRadius: 12}}
+                        onValueChange={(value, key) => {
+                            setSelectedProduct(value)
+                        }}
+                    >
+                        {getProductOptions(products)}
+                    </Picker>
+                </View>      
+                <TextInput 
+                    style={styles.textBox} 
+                    onChangeText={text => setQuantity(text)} >
+                </TextInput>
+                <Button 
+                    buttonStyle={styles.buttonStyle}
+                    titleStyle={styles.buttonTitleStyle}
+                    title='Add Product to Ticket'
+                    onPress={addProductToDelivery}
                 >
-                    {getProductOptions(products)}
-                </Picker>
-                
-                <TextInput
-                style={styles.textBox}
-                placeholder="Enter Quantity"
-                onChangeText={handleChange('quantity')}
-                onBlur={handleBlur('quantity')}
-                value={values.quantity}
-                />
-                {/* Need another button to add product to delivery, and one to search for existing product(maybe drop down) */}
-                <Button buttonStyle={styles.buttonStyle}
-                        titleStyle={styles.buttonTitleStyle}
-                        onPress={handleSubmit as any} title="Add Product To Delivery Ticket" />
+                    
+                </Button>
             </View>
-            )}
-        </Formik>
+                
+                
     )
 
 };
@@ -77,6 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textBox: {
+        flex:1,
         borderStyle: 'solid',
         borderRadius: 8,
         borderColor: brownPalette.brown8,
@@ -97,4 +102,7 @@ const styles = StyleSheet.create({
         margin:10,
         borderRadius: 7
     },
+    pickerContainer:{
+        flex:1
+    }
 });
