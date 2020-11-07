@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import { TextInput, View, StyleSheet, Text } from 'react-native';
-import { Button, colors } from 'react-native-elements'
-import { Formik, prepareDataForValidation } from 'formik';
+import { TextInput, View, StyleSheet} from 'react-native';
+import { Button, Divider} from 'react-native-elements'
+import {Picker} from 'react-native'
+import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
-import {dataBlueColors as Colors, brownPalette} from '../assets/ColorPalette'
-import {funColors} from '../assets/ColorPalette'
+import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
+import   DropDownPicker from 'react-native-dropdown-picker'
+
 
 
 export interface HomeScreenProps {
@@ -15,20 +17,18 @@ export interface HomeScreenProps {
 
 export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
+    
 
-//     //_onPress = (country, country_code, calling_code) => {
-//   const { navigation, route } = this.props;
-//   navigation.navigate('NameOfThePreviousScreen', {
-//     selection: {
-//       country_name: country,
-//       country_code: country_code,
-//       calling_code: calling_code
-//     }
-//   });
-// };
+
     const addProductToDelivery = (values:{}) => {
         navigation.navigate('Delivery', {
             product: values
+        })
+    }
+
+    const getProductOptions = (products:Product[]) => {
+        return products.map(product => {
+            return {label: product.name, value: product.name}
         })
     }
 
@@ -36,20 +36,21 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     
     return (
         <Formik
-            initialValues={{ name: '', quantity: ''}}
+            initialValues={{ name: products[0].name, quantity: '0'}}
             onSubmit={values => addProductToDelivery(values)}
                         
         >
             
-            {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View style={styles.container}>
-                <TextInput
-                style={styles.textBox}
-                placeholder='Enter Product Name'
-                onChangeText={handleChange('name')}
-                onBlur={handleBlur('name')}
-                value={values.name}
-                />
+            {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
+            <View style={styles.container}>                         
+                <Picker 
+                    selectedValue={values.name}
+                    style={{height:60, width: 200, color:brownPalette.brown9, backgroundColor: brownPalette.brown2}}
+                    onValueChange={value => setFieldValue('name', value)}
+                >
+                    {getProductOptions(products)}
+                </Picker>
+                
                 <TextInput
                 style={styles.textBox}
                 placeholder="Enter Quantity"

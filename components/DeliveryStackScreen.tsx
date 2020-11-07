@@ -4,9 +4,14 @@ import NewDeliveryScreen from './DeliveryScreen';
 import { DeliveryFormScreen } from './DeliveryFormScreen';
 import { brownPalette} from '../assets/ColorPalette'
 import { FontAwesome5 } from '@expo/vector-icons/'
+import { Product } from '../types'
+
+export interface InventoryProps {
+    products: Product[]
+}
 
 
-export const DeliveryStackScreen = () =>{
+export const DeliveryStackScreen:React.FC<InventoryProps> = ( {products} ) =>{
     const DeliveryStack = createStackNavigator()
     return (
         <DeliveryStack.Navigator
@@ -29,7 +34,12 @@ export const DeliveryStackScreen = () =>{
         }}
         >
             <DeliveryStack.Screen name="Delivery" component={NewDeliveryScreen} />
-            <DeliveryStack.Screen name="DeliveryFormScreen" component={DeliveryFormScreen} />
+            <DeliveryStack.Screen name="DeliveryForm" 
+                options={{
+                    title:"DeliveryForm",
+                    }}>
+                {(props:any) => <DeliveryFormScreen products={products} {...props} />}
+            </DeliveryStack.Screen>
         </DeliveryStack.Navigator>
     )
 } 

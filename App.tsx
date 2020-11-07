@@ -76,13 +76,20 @@ const App: React.FC<IAppProps> = () => {
         >
           <Tab.Screen name="Login" component={LoginStackScreen}  />
           <Tab.Screen name="Home" component={HomeStackScreen} />
-          <Tab.Screen name="Delivery" component={DeliveryStackScreen} />
+          {/* <Tab.Screen name="Delivery" component={DeliveryStackScreen} /> */}
           <Tab.Screen name="Inventory" 
                 options={{
                     title:"Inventory",
                     
                     }}>
                 {(props:any) => <InventoryStackScreen products={products} {...props} /> }
+          </Tab.Screen>              
+          <Tab.Screen name="Delivery" 
+                options={{
+                    title:"Delivery",
+                    
+                    }}>
+                {(props:any) => <DeliveryStackScreen products={products} {...props} /> }
           </Tab.Screen>              
         </Tab.Navigator>
       </NavigationContainer>

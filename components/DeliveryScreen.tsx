@@ -61,7 +61,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
                     buttonStyle={styles.buttonStyle}
                     title="Add Product to Ticket"
                     titleStyle={styles.titleStyle}
-                    onPress={() => navigation.navigate('DeliveryFormScreen')}
+                    onPress={() => navigation.navigate('DeliveryForm')}
                 />   
                 <Button 
                     buttonStyle={styles.buttonStyle}
