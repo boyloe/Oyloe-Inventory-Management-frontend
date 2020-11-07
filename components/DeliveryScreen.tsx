@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
-import { Button } from 'react-native-elements'
+import { Button, Divider } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
@@ -22,7 +22,6 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }])
     let params = route.params
     useEffect(() => {
-        console.log({params})
         if (params != undefined || params != route.params) {
             const {product} = route.params
             setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])
@@ -32,10 +31,15 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }, [route.params])
 
     const displayProductsDelivered = () => {
-        console.log({productsDelivered})
-        return productsDelivered.map((product,index) => {
-                return <Text key={index}>{product.name} {product.quantity}</Text>
-        })
+        return productsDelivered.map((product,index) => (
+            <View style={{flexDirection: 'row'}} key={index}>
+                <Text>Name: {product.name}</Text>
+                <Text>Quantity: {product.quantity}</Text>
+            </View>
+        )
+
+                
+        )
     }
     //submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
     const handleDeliverySubmit = () => {
@@ -49,20 +53,23 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            {displayProductsDelivered()}
-            <Button 
-                buttonStyle={styles.buttons}
-                title="Add Product to Ticket"
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
-                onPress={() => navigation.navigate('DeliveryFormScreen')}
-            />    
-            <Button 
-                buttonStyle={styles.buttons}
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
-                title="Submit Delivery Ticket"
-                onPress={handleDeliverySubmit}  
-            />    
-
+            <View style={styles.productsDeliveredContainer}>
+                {displayProductsDelivered()}
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button 
+                    buttonStyle={styles.buttonStyle}
+                    title="Add Product to Ticket"
+                    titleStyle={styles.titleStyle}
+                    onPress={() => navigation.navigate('DeliveryForm')}
+                />   
+                <Button 
+                    buttonStyle={styles.buttonStyle}
+                    titleStyle={styles.titleStyle}
+                    title="Submit Delivery Ticket"
+                    onPress={handleDeliverySubmit}  
+                />   
+            </View>
         </View>
     )
 
@@ -73,24 +80,33 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'center',
-        backgroundColor: brownPalette.brown1
+        justifyContent:'flex-end',
+        backgroundColor: brownPalette.brown1,
+        paddingVertical: 20
 
     },
-    titleText: {
-        fontSize: 28, 
-        textAlign: 'center',
-        flex: 1,
-        padding: 20
-
-
+    productsDeliveredContainer: {
+        flex: 3,
+        marginVertical:20,
     },
-    buttons: {
+    buttonStyle: {
         backgroundColor: brownPalette.brownBase,
-        borderRadius: 12,
-        width: 200, 
-        padding:4, 
-        margin:10}
+        width: 240,  
+        paddingVertical: 10,
+        margin:10,
+        borderRadius: 7
+    },
+    buttonContainer: {
+        flex:1,
+
+
+        justifyContent: 'flex-end',
+        flexDirection: 'column'
+    },
+    titleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10
+    }
 })
     
 export default DeliveryScreen

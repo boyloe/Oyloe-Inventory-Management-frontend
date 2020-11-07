@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet} from 'react-native';
 import { Product } from './types'
-import {NavigationContainer, StackActions} from '@react-navigation/native'
+import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import {brownPalette} from './assets/ColorPalette'
@@ -76,13 +76,20 @@ const App: React.FC<IAppProps> = () => {
         >
           <Tab.Screen name="Login" component={LoginStackScreen}  />
           <Tab.Screen name="Home" component={HomeStackScreen} />
-          <Tab.Screen name="Delivery" component={DeliveryStackScreen} />
+          {/* <Tab.Screen name="Delivery" component={DeliveryStackScreen} /> */}
           <Tab.Screen name="Inventory" 
                 options={{
                     title:"Inventory",
                     
                     }}>
                 {(props:any) => <InventoryStackScreen products={products} {...props} /> }
+          </Tab.Screen>              
+          <Tab.Screen name="Delivery" 
+                options={{
+                    title:"Delivery",
+                    
+                    }}>
+                {(props:any) => <DeliveryStackScreen products={products} {...props} /> }
           </Tab.Screen>              
         </Tab.Navigator>
       </NavigationContainer>

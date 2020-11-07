@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import { TextInput, View, StyleSheet, Text } from 'react-native';
-import { Button, colors } from 'react-native-elements'
-import { Formik, prepareDataForValidation } from 'formik';
+import { TextInput, View, StyleSheet} from 'react-native';
+import { Button, Divider} from 'react-native-elements'
+import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
-import {dataBlueColors as Colors, brownPalette} from '../assets/ColorPalette'
-import {funColors} from '../assets/ColorPalette'
+import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
+import { Picker }  from 'react-native'
+
+
 
 
 export interface HomeScreenProps {
@@ -15,55 +17,58 @@ export interface HomeScreenProps {
 
 export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
+    const [selectedProduct, setSelectedProduct] = useState('')
+    const [quantity, setQuantity] = useState('')
 
-//     //_onPress = (country, country_code, calling_code) => {
-//   const { navigation, route } = this.props;
-//   navigation.navigate('NameOfThePreviousScreen', {
-//     selection: {
-//       country_name: country,
-//       country_code: country_code,
-//       calling_code: calling_code
-//     }
-//   });
-// };
-    const addProductToDelivery = (values:{}) => {
+
+    const addProductToDelivery = () => {
         navigation.navigate('Delivery', {
-            product: values
+            product: {
+                name: selectedProduct,
+                quantity: quantity
+            }
         })
     }
+
+    const getProductOptions = (products:Product[]) => {
+        return products.map(product => {
+            return <Picker.Item label={product.name} value={product.name} key={product._id} />
+        })
+    }
+
+    
 
 
     
     return (
-        <Formik
-            initialValues={{ name: '', quantity: ''}}
-            onSubmit={values => addProductToDelivery(values)}
-                        
-        >
-            
-            {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View style={styles.container}>
-                <TextInput
-                style={styles.textBox}
-                placeholder='Enter Product Name'
-                onChangeText={handleChange('name')}
-                onBlur={handleBlur('name')}
-                value={values.name}
-                />
-                <TextInput
-                style={styles.textBox}
-                placeholder="Enter Quantity"
-                onChangeText={handleChange('quantity')}
-                onBlur={handleBlur('quantity')}
-                value={values.quantity}
-                />
-                {/* Need another button to add product to delivery, and one to search for existing product(maybe drop down) */}
-                <Button buttonStyle={{backgroundColor: brownPalette.brownBase}}
-                        titleStyle={{fontFamily: 'Futura'}}
-                        onPress={handleSubmit as any} title="Add Product To Delivery" />
+            <View style={styles.container}> 
+                <View style={styles.pickerContainer}>
+                    <Picker 
+                        selectedValue={selectedProduct}
+                        style={{height: 80, width: 200}}
+                        itemStyle={{height: 150, borderWidth:2, backgroundColor: brownPalette.brown3, borderRadius: 12}}
+                        onValueChange={(value, key) => {
+                            setSelectedProduct(value)
+                        }}
+                    >
+                        {getProductOptions(products)}
+                    </Picker>
+                </View>      
+                <TextInput 
+                    style={styles.textBox} 
+                    onChangeText={text => setQuantity(text)} >
+                </TextInput>
+                <Button 
+                    buttonStyle={styles.buttonStyle}
+                    titleStyle={styles.buttonTitleStyle}
+                    title='Add Product to Ticket'
+                    onPress={addProductToDelivery}
+                >
+                    
+                </Button>
             </View>
-            )}
-        </Formik>
+                
+                
     )
 
 };
@@ -76,6 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textBox: {
+        flex:1,
         borderStyle: 'solid',
         borderRadius: 8,
         borderColor: brownPalette.brown8,
@@ -83,5 +89,20 @@ const styles = StyleSheet.create({
         width: '50%',
         padding: 10,
         margin: 10
+    },
+    buttonTitleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10,
+        fontWeight: '700'
+    },
+    buttonStyle: {
+        backgroundColor: brownPalette.brownBase,
+        width: 240,  
+        paddingVertical: 10,
+        margin:10,
+        borderRadius: 7
+    },
+    pickerContainer:{
+        flex:1
     }
 });
