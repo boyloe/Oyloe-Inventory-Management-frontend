@@ -23,7 +23,6 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }])
     let params = route.params
     useEffect(() => {
-        console.log(productsDelivered)
         if (params != undefined || params != route.params) {
             const { product } = route.params
             setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])

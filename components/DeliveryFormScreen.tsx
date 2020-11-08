@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import { TextInput, View, StyleSheet} from 'react-native';
-import { Button, Divider} from 'react-native-elements'
+import { Button, Divider, Icon, Input} from 'react-native-elements'
 import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
 import { Picker }  from '@react-native-picker/picker'
+import DropDownPicker from 'react-native-dropdown-picker'
 import { TouchableOpacity } from 'react-native';
+import   { Entypo } from '@expo/vector-icons/'
+
 
 
 
@@ -18,7 +21,7 @@ export interface HomeScreenProps {
 
 export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
-    const [selectedProduct, setSelectedProduct] = useState('')
+    const [selectedProduct, setSelectedProduct] = useState('CyberMul')
     const [quantity, setQuantity] = useState('')
 
 
@@ -46,6 +49,12 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     key={product._id} />
         })
     }
+    // const getProductOptions = (products:Product[]) => {
+    //     return products.map(product => {
+    //         console.log(product.name)
+    //         return {label: product.name, value: product.name, icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />}
+    //     })
+    // }
 
     
 
@@ -66,12 +75,24 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     >   
                         {getProductOptions(products)}
                     </Picker>
+{/* 
+                    <DropDownPicker 
+                        items={getProductOptions(products)}
+                        defaultValue={selectedProduct}
+                        containerStyle={{height: 40, width: 200}}
+                        onChangeItem={item => {
+                            console.log(selectedProduct)
+                            setSelectedProduct(item.value)}}
+                    /> */}
                 </TouchableOpacity>  
                 <View style={styles.textInputContainer}>
-                    <TextInput 
-                        style={styles.textBox} 
+                    <Input 
+                        containerStyle={styles.textBox} 
+                        label={'Enter Quantity'}
+                        labelStyle={{color: brownPalette.brown9}}
+                        leftIcon={<Entypo name='chevron-small-right' size={20} color={brownPalette.brown10}/>}
                         onChangeText={text => setQuantity(text)} >
-                    </TextInput>
+                    </Input>
                 </View> 
                 <View style={styles.buttonContainer}>
                     <Button 
@@ -104,8 +125,8 @@ const styles = StyleSheet.create({
     },
     textBox: {
         borderRadius: 8,
-        backgroundColor: brownPalette.brown3,
-        width: '80%',
+        backgroundColor: brownPalette.brown2,
+        width: '40%',
         padding: 10,
         margin: 10
     },
