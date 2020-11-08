@@ -12,7 +12,7 @@ export interface InventoryProps {
     products: Product[]
 }
 
-const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {    
+const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => {    
 
     const [inventory, setInventory] = React.useState<Product[]>([{
         _id: "",
@@ -76,6 +76,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ products }) => {
                                         title="Submit Daily Inventory"
                                         titleStyle={{color: brownPalette.brown1}}
                                         containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center', marginBottom:40 }}
+                                        onPress={() => navigation.navigate('Home')}
                                         />}
             />               
         </SafeAreaView>        

@@ -23,9 +23,9 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }])
     let params = route.params
     useEffect(() => {
-        console.log({params})
+        console.log(productsDelivered)
         if (params != undefined || params != route.params) {
-            const {product} = route.params
+            const { product } = route.params
             setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])
             params = route.params
         } 
@@ -35,7 +35,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     const displayProductsDelivered = () => {
         return productsDelivered.map((product,index) => {
                 // return <Text key={index}>{product.name}  {product.quantity}</Text>
-                return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} bottomDivider={true}>
+                return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} topDivider={true} bottomDivider={true}>
                         <ListItem.Content>
                             <ListItem.Title style={{fontSize: 30}}>{product.name}</ListItem.Title>
                             <ListItem.Subtitle style={{fontStyle: 'italic'}}>Quantity: {product.quantity}</ListItem.Subtitle>
@@ -51,13 +51,15 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
                 "Content-Type" : 'application/json'
             },
             body: JSON.stringify({productsDelivered})
-        })        
+        })
+        setProductsDelivered([{ name:'', quantity: ''}])       
     }
     return(
         <View style={styles.container}>
+            <Text style={{fontFamily: 'Futura', fontSize: 36}}>Products Delivered</Text>
             <View style={{flex:1}}>
                 <Card containerStyle={{padding:0, width: 400}}>
-                    {displayProductsDelivered()}       
+                    {productsDelivered.length > 1 ? displayProductsDelivered() : null}       
                 </Card>
             </View>
             <Button 
