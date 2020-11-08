@@ -5,7 +5,8 @@ import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
-import { Picker }  from 'react-native'
+import { Picker }  from '@react-native-picker/picker'
+import { TouchableOpacity } from 'react-native';
 
 
 
@@ -17,17 +18,23 @@ export interface HomeScreenProps {
 
 export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
-    const [selectedProduct, setSelectedProduct] = useState('CyberMul')
+    const [selectedProduct, setSelectedProduct] = useState('')
     const [quantity, setQuantity] = useState('')
 
 
     const addProductToDelivery = () => {
-        navigation.navigate('Delivery', {
-            product: {
-                name: selectedProduct,
-                quantity: quantity
-            }
-        })
+        if (selectedProduct !== '') {
+                navigation.navigate('Delivery', {
+                    product: {
+                        name: selectedProduct,
+                        quantity: quantity
+                    }
+                })
+                setSelectedProduct('')
+                setQuantity('')
+        } else {
+            return null
+        }
     }
 
     const getProductOptions = (products:Product[]) => {
@@ -46,7 +53,7 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     
     return (
             <View style={styles.container}> 
-                <View style={styles.pickerContainer}>
+                <TouchableOpacity style={styles.pickerContainer}>
                     <Picker 
                         selectedValue={selectedProduct}
                         style={styles.pickerStyle}
@@ -59,7 +66,7 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     >   
                         {getProductOptions(products)}
                     </Picker>
-                </View>  
+                </TouchableOpacity>  
                 <View style={styles.textInputContainer}>
                     <TextInput 
                         style={styles.textBox} 

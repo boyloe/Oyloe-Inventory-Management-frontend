@@ -17,17 +17,18 @@ export const funColors = {
 
 
 
+
 export const brownPalette = {
-    brown1:"#e5d4c3",
-    brown2:"#e5c9ae",
-    brown3:"#debea2",
-    brown4:"#d6ab7d",
-    brownBase:"#b3895d",
-    brown6: "#9b744a",
-    brown7:"#81583a",
-    brown8:"#734f38",
-    brown9:"#553725",
-    brown10:"#482919"
+    brown1:"#f8f2e9",
+    brown2:"#ecdbc3",
+    brown3:"#e1c59d",
+    brown4:"#d6af78",
+    brownBase:"#ca9852",
+    brown6: "#b58037",
+    brown7:"#8f662b",
+    brown8:"#6a4b20",
+    brown9:"#443014",
+    brown10:"#1f1609"
 }
 
 export const grayPalette = {

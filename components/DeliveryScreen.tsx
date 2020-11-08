@@ -33,7 +33,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }, [route.params])
 
     const displayProductsDelivered = () => {
-        return productsDelivered.map((product,index) => {
+        return productsDelivered.slice(1).map((product,index) => {
                 // return <Text key={index}>{product.name}  {product.quantity}</Text>
                 return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} topDivider={true} bottomDivider={true}>
                         <ListItem.Content>
@@ -52,7 +52,8 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
             },
             body: JSON.stringify({productsDelivered})
         })
-        setProductsDelivered([{ name:'', quantity: ''}])       
+        setProductsDelivered([{ name:'', quantity: ''}])
+        navigation.navigate('Home')       
     }
     return(
         <View style={styles.container}>
