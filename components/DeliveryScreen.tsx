@@ -1,10 +1,11 @@
 import * as React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
-import { Button, Divider } from 'react-native-elements'
+import { Button, Card, ListItem } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
 import { useState, useEffect } from 'react'
 import { brownPalette } from '../assets/ColorPalette'
+
 
 const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 
@@ -22,6 +23,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }])
     let params = route.params
     useEffect(() => {
+        console.log({params})
         if (params != undefined || params != route.params) {
             const {product} = route.params
             setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])
@@ -31,15 +33,15 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }, [route.params])
 
     const displayProductsDelivered = () => {
-        return productsDelivered.map((product,index) => (
-            <View style={{flexDirection: 'row'}} key={index}>
-                <Text>Name: {product.name}</Text>
-                <Text>Quantity: {product.quantity}</Text>
-            </View>
-        )
-
-                
-        )
+        return productsDelivered.map((product,index) => {
+                // return <Text key={index}>{product.name}  {product.quantity}</Text>
+                return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} bottomDivider={true}>
+                        <ListItem.Content>
+                            <ListItem.Title style={{fontSize: 30}}>{product.name}</ListItem.Title>
+                            <ListItem.Subtitle style={{fontStyle: 'italic'}}>Quantity: {product.quantity}</ListItem.Subtitle>
+                        </ListItem.Content>
+                    </ListItem>
+        })
     }
     //submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
     const handleDeliverySubmit = () => {
@@ -53,23 +55,24 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            <View style={styles.productsDeliveredContainer}>
-                {displayProductsDelivered()}
+            <View style={{flex:1}}>
+                <Card containerStyle={{padding:0, width: 400}}>
+                    {displayProductsDelivered()}       
+                </Card>
             </View>
-            <View style={styles.buttonContainer}>
-                <Button 
-                    buttonStyle={styles.buttonStyle}
-                    title="Add Product to Ticket"
-                    titleStyle={styles.titleStyle}
-                    onPress={() => navigation.navigate('DeliveryForm')}
-                />   
-                <Button 
-                    buttonStyle={styles.buttonStyle}
-                    titleStyle={styles.titleStyle}
-                    title="Submit Delivery Ticket"
-                    onPress={handleDeliverySubmit}  
-                />   
-            </View>
+            <Button 
+                buttonStyle={styles.buttons}
+                title="Add Product to Ticket"
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                onPress={() => navigation.navigate('DeliveryForm')}
+            />    
+            <Button 
+                buttonStyle={styles.buttons}
+                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                title="Submit Delivery Ticket"
+                onPress={handleDeliverySubmit}  
+            />    
+
         </View>
     )
 
@@ -80,33 +83,24 @@ const styles= StyleSheet.create({
     container: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent:'flex-end',
-        backgroundColor: brownPalette.brown1,
-        paddingVertical: 20
+        justifyContent:'center',
+        backgroundColor: brownPalette.brown1
 
     },
-    productsDeliveredContainer: {
-        flex: 3,
-        marginVertical:20,
+    titleText: {
+        fontSize: 28, 
+        textAlign: 'center',
+        flex: 1,
+        padding: 20
+
+
     },
-    buttonStyle: {
+    buttons: {
         backgroundColor: brownPalette.brownBase,
-        width: 240,  
-        paddingVertical: 10,
-        margin:10,
-        borderRadius: 7
-    },
-    buttonContainer: {
-        flex:1,
-
-
-        justifyContent: 'flex-end',
-        flexDirection: 'column'
-    },
-    titleStyle: {
-        fontFamily: 'Futura', 
-        color: brownPalette.brown10
-    }
+        borderRadius: 12,
+        width: 200, 
+        padding:4, 
+        margin:10}
 })
     
 export default DeliveryScreen
