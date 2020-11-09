@@ -33,27 +33,27 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                         quantity: quantity
                     }
                 })
-                setSelectedProduct('')
+                setSelectedProduct('CyberMul')
                 setQuantity('')
         } else {
             return null
         }
     }
 
-    const getProductOptions = (products:Product[]) => {
-        return products.map(product => {
-            return <Picker.Item 
-                    label={product.name} 
-                    value={product.name} 
-                    color={brownPalette.brown10}
-                    key={product._id} />
-        })
-    }
     // const getProductOptions = (products:Product[]) => {
     //     return products.map(product => {
-    //         return {label: product.name, value: product.name, icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />}
+    //         return <Picker.Item 
+    //                 label={product.name} 
+    //                 value={product.name} 
+    //                 color={brownPalette.brown10}
+    //                 key={product._id} />
     //     })
     // }
+    const getProductOptions = (products:Product[]) => {
+        return products.map(product => {
+            return {label: product.name, value: product.name, icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />}
+        })
+    }
 
     
 
@@ -63,7 +63,7 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
             <SafeAreaView style={styles.container}> 
                 <View style={styles.pickerContainer}>
                     <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Select a Product</Text>
-                    <Picker 
+                    {/* <Picker 
                         selectedValue={selectedProduct}
                         itemStyle={styles.pickerItemStyle}
                         onValueChange={(value:any, key) => {
@@ -73,15 +73,15 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                         
                     >   
                         {getProductOptions(products)}
-                    </Picker>
+                    </Picker> */}
 
-                    {/* <DropDownPicker 
+                    <DropDownPicker 
                         items={getProductOptions(products)}
                         defaultValue={selectedProduct}
                         containerStyle={{height: 40, width: 200}}
                         onChangeItem={item => {
                             return setSelectedProduct(item.value)}}
-                    /> */}
+                    />
                 </View>  
                 <View style={styles.textInputContainer}>
                     <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Enter Quantity</Text>

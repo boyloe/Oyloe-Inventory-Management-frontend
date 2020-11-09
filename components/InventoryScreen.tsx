@@ -68,7 +68,8 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 keyExtractor={(product) => {
                     return product._id}
                 }
-                ListFooterComponent={<Button 
+            /> 
+            <Button 
                                         buttonStyle={{
                                             backgroundColor: brownPalette.brownBase,
                                             padding: 10,
@@ -77,8 +78,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                                         titleStyle={{color: brownPalette.brown1}}
                                         containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center', marginBottom:40 }}
                                         onPress={() => navigation.navigate('Home')}
-                                        />}
-            />               
+                                        />              
         </SafeAreaView>        
     )
 }
