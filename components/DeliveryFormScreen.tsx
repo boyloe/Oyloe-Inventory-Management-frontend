@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { TextInput, View, StyleSheet} from 'react-native';
+import { TextInput, View, StyleSheet, Text, SafeAreaView} from 'react-native';
 import { Button, Divider, Icon, Input} from 'react-native-elements'
 import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
@@ -8,7 +8,7 @@ import { Product } from '../types'
 import { Picker }  from '@react-native-picker/picker'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { TouchableOpacity } from 'react-native';
-import   { Entypo } from '@expo/vector-icons/'
+import   { Entypo, Feather } from '@expo/vector-icons/'
 
 
 
@@ -60,8 +60,9 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 
     
     return (
-            <View style={styles.container}> 
+            <SafeAreaView style={styles.container}> 
                 <View style={styles.pickerContainer}>
+                    <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Select a Product</Text>
                     <Picker 
                         selectedValue={selectedProduct}
                         itemStyle={styles.pickerItemStyle}
@@ -83,11 +84,13 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     /> */}
                 </View>  
                 <View style={styles.textInputContainer}>
+                    <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Enter Quantity</Text>
                     <Input 
                         containerStyle={styles.textBox} 
-                        label={'Enter Quantity'}
+                        label={'Quantity'}
                         labelStyle={{color: brownPalette.brown9}}
-                        leftIcon={<Entypo name='chevron-small-right' size={20} color={brownPalette.brown10}/>}
+                        // leftIcon={<Entypo name='chevron-right' size={20} color={brownPalette.brown10}/>}
+                        leftIcon={<Feather name='hash' size={15} color={brownPalette.brown10}/>}
                         onChangeText={text => setQuantity(text)} >
                     </Input>
                 </View> 
@@ -100,7 +103,7 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     />                  
                 </View>   
                 
-            </View>
+            </SafeAreaView>
                 
                 
     )
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
     textBox: {
         borderRadius: 8,
         backgroundColor: brownPalette.brown2,
-        width: '40%',
+        width: '45%',
         padding: 10,
         margin: 10
     },
@@ -142,19 +145,20 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: 300,
         margin:10,
-        borderRadius: 7
+        borderRadius: 8
     },
     pickerContainer:{
         flex:1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        marginTop: 40
         
     },
     pickerItemStyle: {
         height: '80%', 
         width: 180,
-        backgroundColor: '#f0e3d0', 
-        borderRadius: 12,       
+        backgroundColor: brownPalette.brown2, 
+        borderRadius: 8,       
 
     }
 });
