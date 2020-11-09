@@ -54,9 +54,9 @@ const styles= StyleSheet.create({
         
     },
     button: {
-        flex: 1,
         backgroundColor: brownPalette.brownBase,
         width: 200,
+        height: 40,
         color: brownPalette.brownBase,
         margin: 50,
         

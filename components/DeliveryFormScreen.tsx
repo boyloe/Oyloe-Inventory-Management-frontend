@@ -62,29 +62,20 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     return (
             <SafeAreaView style={styles.container}> 
                 <View style={styles.pickerContainer}>
-                    <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Select a Product</Text>
-                    {/* <Picker 
-                        selectedValue={selectedProduct}
-                        itemStyle={styles.pickerItemStyle}
-                        onValueChange={(value:any, key) => {
-                            setSelectedProduct(value)
-                        }}
-                        
-                        
-                    >   
-                        {getProductOptions(products)}
-                    </Picker> */}
+                    <Text style={{fontFamily:'Futura', fontSize: 28, marginVertical:10, color: brownPalette.brown9}}>Product Info</Text>
 
                     <DropDownPicker 
                         items={getProductOptions(products)}
                         defaultValue={selectedProduct}
-                        containerStyle={{height: 40, width: 200}}
+                        dropDownStyle={{backgroundColor: brownPalette.brown2,zIndex:2000}}
+                        itemStyle={{justifyContent: 'flex-start'}}
+                        containerStyle={{height:100, width: 300, backgroundColor: brownPalette.brown2}}
                         onChangeItem={item => {
                             return setSelectedProduct(item.value)}}
                     />
                 </View>  
                 <View style={styles.textInputContainer}>
-                    <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Enter Quantity</Text>
+                    {/* <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Enter Quantity</Text> */}
                     <Input 
                         containerStyle={styles.textBox} 
                         label={'Quantity'}
@@ -116,17 +107,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#faf5ef',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: 10
     },
     textInputContainer: {
         flex:1,
         width: 400,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center'
     },
     textBox: {
         borderRadius: 8,
         backgroundColor: brownPalette.brown2,
-        width: '45%',
+        width: 300,
         padding: 10,
         margin: 10
     },
@@ -150,15 +142,14 @@ const styles = StyleSheet.create({
     pickerContainer:{
         flex:1,
         justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginTop: 40
+        alignItems: 'flex-start',
+        marginTop: 40,
+        width: '100%'
         
     },
     pickerItemStyle: {
-        height: '80%', 
-        width: 180,
         backgroundColor: brownPalette.brown2, 
-        borderRadius: 8,       
+        borderRadius: 0,       
 
     }
 });

@@ -99,10 +99,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         borderRadius: 10,
-        height: 250,
-        shadowOffset: {width: 7, height: 7},
+        height: 180,
+        shadowOffset: {width:5, height: 5},
         shadowOpacity: 0.4,
-        shadowColor: brownPalette.brown9
+        shadowColor: brownPalette.brown7
         
 
     },
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
         borderColor: brownPalette.brownBase,
         backgroundColor: brownPalette.brown1,
         width: 40,
+        height: 30,
         textAlign: 'center',
         alignSelf: 'flex-end',
 
