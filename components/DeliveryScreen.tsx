@@ -56,7 +56,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            <Text style={{fontFamily: 'Futura', fontSize: 36}}>Products Delivered</Text>
+            <Text style={{fontFamily: 'Futura', fontSize: 48, color: brownPalette.brown9,}}>Delivery Ticket</Text>
             <View style={{flex:1}}>
                 <Card containerStyle={{padding:0, width: 400}}>
                     {productsDelivered.length > 1 ? displayProductsDelivered() : null}       

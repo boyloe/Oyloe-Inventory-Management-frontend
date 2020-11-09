@@ -24,19 +24,19 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
     }])
 
     useEffect(() => {        
-        const sortedProducts =  products.sort(function(a, b) {
-            let nameProductA = a.name.toUpperCase(); // ignore upper and lowercase
-            let nameProductB = b.name.toUpperCase(); // ignore upper and lowercase
-            if (nameProductA < nameProductB) {
-                return -1;
-            }
-            if (nameProductA > nameProductB) {
-                return 1;
-            }
-            // names must be equal
-            return 0;
-        });
-        setInventory(sortedProducts as Product[])
+        // const sortedProducts =  products.sort(function(a, b) {
+        //     let nameProductA = a.name.toUpperCase(); // ignore upper and lowercase
+        //     let nameProductB = b.name.toUpperCase(); // ignore upper and lowercase
+        //     if (nameProductA < nameProductB) {
+        //         return -1;
+        //     }
+        //     if (nameProductA > nameProductB) {
+        //         return 1;
+        //     }
+        //     // names must be equal
+        //     return 0;
+        // });
+        setInventory(products as Product[])
     },[])
 
     const renderInventory = ({ item }:{item:Product}) => (

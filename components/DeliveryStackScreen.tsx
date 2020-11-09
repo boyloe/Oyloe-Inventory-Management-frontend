@@ -21,7 +21,7 @@ export const DeliveryStackScreen:React.FC<InventoryProps> = ( {products} ) =>{
                 fontFamily: 'Futura',
                 fontSize: 24,
                 fontWeight: '600',
-                color: brownPalette.brown10
+                color: brownPalette.brown9
             },
             headerStyle: {
                 backgroundColor: brownPalette.brown3

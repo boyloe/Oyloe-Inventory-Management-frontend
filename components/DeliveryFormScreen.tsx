@@ -51,7 +51,6 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     }
     // const getProductOptions = (products:Product[]) => {
     //     return products.map(product => {
-    //         console.log(product.name)
     //         return {label: product.name, value: product.name, icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />}
     //     })
     // }
@@ -62,12 +61,11 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     
     return (
             <View style={styles.container}> 
-                <TouchableOpacity style={styles.pickerContainer}>
+                <View style={styles.pickerContainer}>
                     <Picker 
                         selectedValue={selectedProduct}
-                        style={styles.pickerStyle}
                         itemStyle={styles.pickerItemStyle}
-                        onValueChange={(value, key) => {
+                        onValueChange={(value:any, key) => {
                             setSelectedProduct(value)
                         }}
                         
@@ -75,16 +73,15 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     >   
                         {getProductOptions(products)}
                     </Picker>
-{/* 
-                    <DropDownPicker 
+
+                    {/* <DropDownPicker 
                         items={getProductOptions(products)}
                         defaultValue={selectedProduct}
                         containerStyle={{height: 40, width: 200}}
                         onChangeItem={item => {
-                            console.log(selectedProduct)
-                            setSelectedProduct(item.value)}}
+                            return setSelectedProduct(item.value)}}
                     /> */}
-                </TouchableOpacity>  
+                </View>  
                 <View style={styles.textInputContainer}>
                     <Input 
                         containerStyle={styles.textBox} 
@@ -149,14 +146,12 @@ const styles = StyleSheet.create({
     },
     pickerContainer:{
         flex:1,
-        justifyContent: 'center'
-    },
-    pickerStyle: {
-        height: 50, 
-        width: 200,        
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        
     },
     pickerItemStyle: {
-        height: 120, 
+        height: '80%', 
         width: 180,
         backgroundColor: '#f0e3d0', 
         borderRadius: 12,       

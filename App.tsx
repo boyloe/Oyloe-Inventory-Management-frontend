@@ -40,8 +40,24 @@ const App: React.FC<IAppProps> = () => {
   useEffect(() => {
     fetch(`${baseURL}/products`)
     .then(response => response.json())
-    .then((products) => setProducts(products))
-  }, [])
+    .then((products) => products.sort(function(a:Product, b:Product) {
+      let nameProductA = a.name.toUpperCase(); // ignore upper and lowercase
+      let nameProductB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameProductA < nameProductB) {
+          return -1;
+      }
+      if (nameProductA > nameProductB) {
+          return 1;
+      }
+      // names must be equal
+      return 0;
+    }))
+    .then(sortedProducts => setProducts(sortedProducts))
+    // .then(sortedProducts => setProducts(sortedProducts))
+    ,[]
+  });
+
+  
 
     return (
       <NavigationContainer>      
@@ -57,15 +73,15 @@ const App: React.FC<IAppProps> = () => {
                 iconName = 'login'
               } else {
                 iconName = 'boxes'
-                return <FontAwesome5 name={iconName} color={brownPalette.brown10} size={24} />
+                return <FontAwesome5 name={iconName} color={brownPalette.brown9} size={24} />
               }
-              return <MaterialCommunityIcons name={iconName} color={brownPalette.brown10} size={24} />
+              return <MaterialCommunityIcons name={iconName} color={brownPalette.brown9} size={24} />
             }, 
           })}
           tabBarOptions={{
             style: {backgroundColor: brownPalette.brown3},
             activeTintColor: brownPalette.brown8,
-            inactiveTintColor: grayPalette.gray9,
+            inactiveTintColor: brownPalette.brown6,
             labelStyle: {
               fontSize:14,
               fontFamily: 'Futura'
