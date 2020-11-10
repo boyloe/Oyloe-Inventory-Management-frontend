@@ -23,15 +23,17 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
         quantity: 0
     }])
 
+    const [currentQuantities, setCurrentQuantities] = useState([''])
+
     useEffect(() => {        
         setInventory(products as Product[])
     },[])
 
-    const renderInventory = ({ item }:{item:Product}) => (
-        <Item name={item.name} quantity={item.quantity} key={item._id} description={item.description}/>
+    const renderInventory = ({ item, index }:{item:Product, index: number}) => (
+        <Item name={item.name} quantity={item.quantity} index={index} key={item._id} description={item.description}/>
     );
 
-    const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string}) => (
+    const Item = ({ name ,quantity, description, index }:{name:string, quantity: number, description:string, index:number}) => (
         <View style={styles.item} >
             <View style={styles.productInfoContainer}>
                 <Text style={styles.name}>{name}</Text>
@@ -40,7 +42,14 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 <View style={styles.countContainer}>
                     <View style={styles.currentCountContainer}>
                         <Text style={styles.currentCount}>Current Count: </Text>
-                        <TextInput style={styles.input}/>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={text => {
+                                currentQuantities[index] = text
+                                setCurrentQuantities(currentQuantities)
+                            }}
+                            value={currentQuantities[index]}
+                            />
                     </View>    
                     <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
                 </View>
@@ -109,8 +118,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: brownPalette.brownBase,
         backgroundColor: brownPalette.brown1,
-        width: 40,
-        height: 30,
+        height:30,
+        width:40,
         textAlign: 'center',
         alignSelf: 'flex-end',
 
@@ -127,7 +136,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end'
     },
     currentCountContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
     currentCount: {
         fontSize:20,
