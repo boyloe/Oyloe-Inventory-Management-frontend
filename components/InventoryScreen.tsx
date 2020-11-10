@@ -40,7 +40,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 <View style={styles.countContainer}>
                     <View style={styles.currentCountContainer}>
                         <Text style={styles.currentCount}>Current Count: </Text>
-                        <TextInput style={styles.Input}/>
+                        <TextInput style={styles.input}/>
                     </View>    
                     <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
                 </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start'
 
     },
-    Input: {
+    input: {
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: brownPalette.brownBase,
