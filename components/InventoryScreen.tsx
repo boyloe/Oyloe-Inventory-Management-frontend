@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { View, Text, StatusBar, SafeAreaView, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StatusBar, SafeAreaView, StyleSheet, TextInput } from 'react-native'
 import { Button} from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
-import { TextInput} from 'react-native-gesture-handler'
+
 import { brownPalette } from '../assets/ColorPalette'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
@@ -29,53 +30,44 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
         setInventory(products as Product[])
     },[])
 
-    const renderInventory = ({ item, index }:{item:Product, index: number}) => (
-        <Item name={item.name} quantity={item.quantity} index={index} key={item._id} description={item.description}/>
-    );
+    const renderInventory = (inventory:Product[]) => (
+        inventory.map((product:Product, index:number) => {
+            return <Item name={product.name} quantity={product.quantity} key={product._id} description={product.description} index={index} />
+        }
+    ));
 
-    const Item = ({ name ,quantity, description, index }:{name:string, quantity: number, description:string, index:number}) => (
-        <View style={styles.item} >
-            <View style={styles.productInfoContainer}>
-                <Text style={styles.name}>{name}</Text>
-                <Text style={styles.description}>{description}</Text>
-            </View>
-                <View style={styles.countContainer}>
-                    <View style={styles.currentCountContainer}>
-                        <Text style={styles.currentCount}>Current Count: </Text>
-                        <TextInput 
-                            style={styles.input}
-                            onChangeText={text => {
-                                currentQuantities[index] = text
-                                setCurrentQuantities(currentQuantities)
-                            }}
-                            value={currentQuantities[index]}
-                            />
-                    </View>    
-                    <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
-                </View>
-
-        </View>
+    const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string, index:number}) => (
+        // <View style={styles.item} >
+        //     <View style={styles.productInfoContainer}>
+        //         <Text style={styles.name}>{name}</Text>
+        //         <Text style={styles.description}>{description}</Text>
+        //     </View>
+        //     <View style={styles.countContainer}>
+                // <View style={styles.currentCountContainer}>
+                //     <Text style={styles.currentCount}>Current Count: </Text>
+                    <TextInput style={styles.input}
+                    />
+                // </View>    
+        //         <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
+        //     </View>
+        // </View>            
     );
         
     return (
-        <SafeAreaView style={styles.container} >
-            <FlatList
-                data={inventory}
-                renderItem={renderInventory}
-                keyExtractor={(product) => {
-                    return product._id}
-                }
-            /> 
+        <SafeAreaView style={styles.container} >      
+            
+                {renderInventory(inventory)}
+            
             <Button 
-                                        buttonStyle={{
-                                            backgroundColor: brownPalette.brownBase,
-                                            padding: 10,
-                                            }}
-                                        title="Submit Daily Inventory"
-                                        titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
-                                        containerStyle={{borderRadius: 7, width: 300, alignSelf: 'center', marginVertical:50 }}
-                                        onPress={() => navigation.navigate('Home')}
-                                        />              
+                buttonStyle={{
+                    backgroundColor: brownPalette.brownBase,
+                    padding: 10,
+                    }}
+                title="Submit Daily Inventory"
+                titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
+                containerStyle={{borderRadius: 7, width: 300, alignSelf: 'center', marginVertical:50 }}
+                onPress={() => navigation.navigate('Home')}
+                />              
         </SafeAreaView>        
     )
 }
@@ -118,12 +110,10 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: brownPalette.brownBase,
         backgroundColor: brownPalette.brown1,
-        height:30,
-        width:40,
+        width: 40,
+        height: 30,
         textAlign: 'center',
-        alignSelf: 'flex-end',
-
-        
+        alignSelf: 'flex-end',    
         
     },
     description: {

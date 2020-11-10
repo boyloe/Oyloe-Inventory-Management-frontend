@@ -73,7 +73,7 @@ const App: React.FC<IAppProps> = () => {
                 iconName = 'login'
               } else {
                 iconName = 'boxes'
-                return <FontAwesome5 name={iconName} color={brownPalette.brown9} size={24} />
+                return <FontAwesome5 name={iconName} color={brownPalette.brown9} size={24} sty />
               }
               return <MaterialCommunityIcons name={iconName} color={brownPalette.brown9} size={24} />
             }, 
@@ -85,8 +85,7 @@ const App: React.FC<IAppProps> = () => {
             labelStyle: {
               fontSize:14,
               fontFamily: 'Futura'
-            },
-            keyboardHidesTabBar: true
+            }
             
           }}  
         >

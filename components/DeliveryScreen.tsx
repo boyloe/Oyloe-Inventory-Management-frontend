@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, Image} from 'react-native'
 import { Button, Card, ListItem } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { Product } from '../types'
@@ -36,11 +36,17 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
                 // return <Text key={index}>{product.name}  {product.quantity}</Text>
                 return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} topDivider={true} bottomDivider={true}>
                         <ListItem.Content>
-                            <ListItem.Title style={{fontSize: 30}}>{product.name}</ListItem.Title>
-                            <ListItem.Subtitle style={{fontStyle: 'italic'}}>Quantity: {product.quantity}</ListItem.Subtitle>
+                            <ListItem.Title style={{fontSize: 30, color: brownPalette.brown9}}>{product.name}</ListItem.Title>
+                            <ListItem.Subtitle style={{fontStyle: 'italic', color: brownPalette.brown9}}>Quantity: {product.quantity}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
         })
+    }
+
+    const displayLogo = () => {
+        return <Image 
+                    source={require('../assets/images/OIMSLogo.png')}
+                    style={styles.image} />
     }
     //submits to delivery collection BE, updates Inventory collection BE,  and redirects to home}
     const handleDeliverySubmit = () => {
@@ -58,9 +64,13 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
         <View style={styles.container}>
             <Text style={{fontFamily: 'Futura', fontSize: 48, color: brownPalette.brown8, alignSelf: 'flex-start'}}>Delivery Ticket</Text>
             <View style={{flex:1}}>
-                <Card containerStyle={{padding:0, width: 400}}>
-                    {productsDelivered.length > 1 ? displayProductsDelivered() : null}       
-                </Card>
+                {productsDelivered.length > 1 
+                    ? <Card containerStyle={{padding:0, width: 400, backgroundColor: brownPalette.brown1, borderWidth:0}}>
+                        {displayProductsDelivered()}
+                        </Card>
+                    : displayLogo()
+                }
+                
             </View>
             <Button 
                 buttonStyle={styles.buttons}
@@ -102,7 +112,21 @@ const styles= StyleSheet.create({
         borderRadius: 12,
         width: 200, 
         padding:4, 
-        margin:10}
+        margin:10
+    },
+    imageContainer: {
+        flex: 1,
+        paddingTop: 50, 
+
+    }, 
+    image: {
+        height: 250,
+        width: 250,
+        opacity: 0.6,
+        alignSelf: 'center',
+        marginTop: 100,
+        backgroundColor: brownPalette.brown1
+    },
 })
     
 export default DeliveryScreen
