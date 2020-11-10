@@ -32,31 +32,33 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
 
     const renderInventory = (inventory:Product[]) => (
         inventory.map((product:Product, index:number) => {
+            // return <TextInput style={styles.input} / >
             return <Item name={product.name} quantity={product.quantity} key={product._id} description={product.description} index={index} />
         }
     ));
 
     const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string, index:number}) => (
-        // <View style={styles.item} >
-        //     <View style={styles.productInfoContainer}>
-        //         <Text style={styles.name}>{name}</Text>
-        //         <Text style={styles.description}>{description}</Text>
-        //     </View>
-        //     <View style={styles.countContainer}>
-                // <View style={styles.currentCountContainer}>
-                //     <Text style={styles.currentCount}>Current Count: </Text>
-                    <TextInput style={styles.input}
-                    />
-                // </View>    
-        //         <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
-        //     </View>
-        // </View>            
+            <View style={styles.item} >
+                <View style={styles.productInfoContainer}>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.description}>{description}</Text>
+            </View>
+            <View style={styles.countContainer}>
+                <View style={styles.currentCountContainer}>
+                    <Text style={styles.currentCount}>Current Count: </Text>
+                    <TextInput style={styles.input}/>
+                </View>    
+                <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
+            </View>
+        </View>            
     );
         
     return (
         <SafeAreaView style={styles.container} >      
-            
+            <ScrollView>
                 {renderInventory(inventory)}
+
+            </ScrollView>
             
             <Button 
                 buttonStyle={{
@@ -79,66 +81,75 @@ const styles = StyleSheet.create({
         backgroundColor: brownPalette.brown1,
         
     },
-    item: {
-        backgroundColor: brownPalette.brown4,
-        padding: 15,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        borderRadius: 10,
-        height: 180,
-        shadowOffset: {width:5, height: 5},
-        shadowOpacity: 0.4,
-        shadowColor: brownPalette.brown7
+    // item: {
+    //     backgroundColor: brownPalette.brown4,
+    //     padding: 15,
+    //     marginVertical: 8,
+    //     marginHorizontal: 16,
+    //     flexDirection: 'column',
+    //     justifyContent: 'space-between',
+    //     alignItems: 'flex-start',
+    //     borderRadius: 10,
+    //     // height: 180,
+    //     shadowOffset: {width:5, height: 5},
+    //     shadowOpacity: 0.4,
+    //     shadowColor: brownPalette.brown7
         
 
-    },
-    productInfoContainer: {
+    // },
+    // productInfoContainer: {
         
-    },
-    name: {
-        fontSize: 34,
-        fontFamily: 'Futura',
-        color: brownPalette.brown10,
-        alignSelf: 'flex-start'
+    // },
+    // name: {
+    //     fontSize: 34,
+    //     fontFamily: 'Futura',
+    //     color: brownPalette.brown10,
+    //     alignSelf: 'flex-start'
 
-    },
+    // },
     input: {
-        borderStyle: 'solid',
+        padding: 0,
+        margin: 0,
+        textDecorationColor: 'black',
+        textDecorationStyle: 'solid',
+    //     borderStyle: 'solid',
         borderWidth: 2,
-        borderColor: brownPalette.brownBase,
-        backgroundColor: brownPalette.brown1,
+        fontSize: 24,
+    //     borderColor: brownPalette.brownBase,
+    //     backgroundColor: brownPalette.brown1,
         width: 40,
         height: 30,
-        textAlign: 'center',
-        alignSelf: 'flex-end',    
+    //     // textAlign: 'center',
+    //     // alignSelf: 'flex-end',   
         
     },
-    description: {
-        fontSize:20,
-        fontFamily:'Futura', 
-        color: brownPalette.brown8,
-        alignSelf: 'flex-start'
-    },
-    countContainer: {
-        alignSelf: 'flex-end'
-    },
-    currentCountContainer: {
-        flexDirection: 'row',
+    // description: {
+    //     fontSize:20,
+    //     fontFamily:'Futura', 
+    //     color: brownPalette.brown8,
+    //     alignSelf: 'flex-start'
+    // },
+    // countContainer: {
+    //     alignSelf: 'flex-end',
+    //     borderWidth:1
+    // },
+    // currentCountContainer: {
+    //     flexDirection: 'row',
+    //     borderWidth: 1
         
-    },
-    currentCount: {
-        fontSize:20,
-        fontFamily:'Futura', 
-        color: brownPalette.brown8
-    },
-    previousCount: {
-        fontSize:20,
-        fontFamily:'Futura', 
-        color: brownPalette.brown8
-    }
+    // },
+    // currentCount: {
+    //     fontSize:20,
+    //     fontFamily:'Futura', 
+    //     color: brownPalette.brown8,
+    //     borderWidth: 1
+
+    // },
+    // previousCount: {
+    //     fontSize:20,
+    //     fontFamily:'Futura', 
+    //     color: brownPalette.brown8
+    // }
 });
 
 export default InventoryScreen
