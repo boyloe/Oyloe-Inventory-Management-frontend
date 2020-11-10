@@ -52,7 +52,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 <View style={styles.countContainer}>
                     <View style={styles.currentCountContainer}>
                         <Text style={styles.currentCount}>Current Count: </Text>
-                        <TextInput style={styles.Input} defaultValue={`${quantity}`}/>
+                        <TextInput style={styles.Input}/>
                     </View>    
                     <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
                 </View>
@@ -75,8 +75,8 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                                             padding: 10,
                                             }}
                                         title="Submit Daily Inventory"
-                                        titleStyle={{color: brownPalette.brown1}}
-                                        containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center', marginBottom:40 }}
+                                        titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
+                                        containerStyle={{borderRadius: 7, width: 300, alignSelf: 'center', marginVertical:50 }}
                                         onPress={() => navigation.navigate('Home')}
                                         />              
         </SafeAreaView>        

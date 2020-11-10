@@ -61,15 +61,17 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     
     return (
             <SafeAreaView style={styles.container}> 
+                <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10, color: brownPalette.brown9, alignSelf: 'flex-start'}}>Product Info</Text>
                 <View style={styles.pickerContainer}>
-                    <Text style={{fontFamily:'Futura', fontSize: 28, marginVertical:10, color: brownPalette.brown9}}>Product Info</Text>
-
                     <DropDownPicker 
                         items={getProductOptions(products)}
+                        style={{backgroundColor: brownPalette.brown2}}
                         defaultValue={selectedProduct}
-                        dropDownStyle={{backgroundColor: brownPalette.brown2,zIndex:2000}}
+                        dropDownStyle={{backgroundColor: brownPalette.brown3,}}
+                        containerStyle={{height:100, width: 305, alignSelf: 'flex-start', paddingLeft: 7}}
+                        selectedLabelStyle= {{backgroundColor: brownPalette.brown2}}
                         itemStyle={{justifyContent: 'flex-start'}}
-                        containerStyle={{height:100, width: 300, backgroundColor: brownPalette.brown2}}
+                        labelStyle={{textAlign: 'left', color: brownPalette.brown9, fontSize: 24}}
                         onChangeItem={item => {
                             return setSelectedProduct(item.value)}}
                     />
@@ -104,16 +106,17 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#faf5ef',
+        backgroundColor: brownPalette.brown1,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 10
     },
     textInputContainer: {
-        flex:1,
+        
         width: 400,
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: -1
     },
     textBox: {
         borderRadius: 8,
@@ -137,19 +140,20 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: 300,
         margin:10,
-        borderRadius: 8
+        borderRadius: 6
     },
     pickerContainer:{
         flex:1,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         alignItems: 'flex-start',
         marginTop: 40,
-        width: '100%'
+        width: '100%', 
+
         
     },
     pickerItemStyle: {
         backgroundColor: brownPalette.brown2, 
-        borderRadius: 0,       
+        borderRadius: 0    
 
     }
 });
