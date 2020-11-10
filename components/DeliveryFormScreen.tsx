@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import { TextInput, View, StyleSheet} from 'react-native';
-import { Button, Divider} from 'react-native-elements'
+import { TextInput, View, StyleSheet, Text, SafeAreaView} from 'react-native';
+import { Button, Divider, Icon, Input} from 'react-native-elements'
 import { Formik, Field, Form } from 'formik';
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
 import { Picker }  from '@react-native-picker/picker'
+import DropDownPicker from 'react-native-dropdown-picker'
 import { TouchableOpacity } from 'react-native';
+import   { Entypo, Feather } from '@expo/vector-icons/'
+
 
 
 
@@ -18,7 +21,7 @@ export interface HomeScreenProps {
 
 export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, products}) => {
 
-    const [selectedProduct, setSelectedProduct] = useState('')
+    const [selectedProduct, setSelectedProduct] = useState('CyberMul')
     const [quantity, setQuantity] = useState('')
 
 
@@ -30,20 +33,25 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                         quantity: quantity
                     }
                 })
-                setSelectedProduct('')
+                setSelectedProduct('CyberMul')
                 setQuantity('')
         } else {
             return null
         }
     }
 
+    // const getProductOptions = (products:Product[]) => {
+    //     return products.map(product => {
+    //         return <Picker.Item 
+    //                 label={product.name} 
+    //                 value={product.name} 
+    //                 color={brownPalette.brown10}
+    //                 key={product._id} />
+    //     })
+    // }
     const getProductOptions = (products:Product[]) => {
         return products.map(product => {
-            return <Picker.Item 
-                    label={product.name} 
-                    value={product.name} 
-                    color={brownPalette.brown10}
-                    key={product._id} />
+            return {label: product.name, value: product.name, icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />}
         })
     }
 
@@ -52,26 +60,32 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 
     
     return (
-            <View style={styles.container}> 
-                <TouchableOpacity style={styles.pickerContainer}>
-                    <Picker 
-                        selectedValue={selectedProduct}
-                        style={styles.pickerStyle}
-                        itemStyle={styles.pickerItemStyle}
-                        onValueChange={(value, key) => {
-                            setSelectedProduct(value)
-                        }}
-                        
-                        
-                    >   
-                        {getProductOptions(products)}
-                    </Picker>
-                </TouchableOpacity>  
+            <SafeAreaView style={styles.container}> 
+                <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10, color: brownPalette.brown9, alignSelf: 'flex-start'}}>Product Info</Text>
+                <View style={styles.pickerContainer}>
+                    <DropDownPicker 
+                        items={getProductOptions(products)}
+                        style={{backgroundColor: brownPalette.brown2}}
+                        defaultValue={selectedProduct}
+                        dropDownStyle={{backgroundColor: brownPalette.brown3,}}
+                        containerStyle={{height:100, width: 305, alignSelf: 'flex-start', paddingLeft: 7}}
+                        selectedLabelStyle= {{backgroundColor: brownPalette.brown2}}
+                        itemStyle={{justifyContent: 'flex-start'}}
+                        labelStyle={{textAlign: 'left', color: brownPalette.brown9, fontSize: 24}}
+                        onChangeItem={item => {
+                            return setSelectedProduct(item.value)}}
+                    />
+                </View>  
                 <View style={styles.textInputContainer}>
-                    <TextInput 
-                        style={styles.textBox} 
+                    {/* <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10}}>Enter Quantity</Text> */}
+                    <Input 
+                        containerStyle={styles.textBox} 
+                        label={'Quantity'}
+                        labelStyle={{color: brownPalette.brown9}}
+                        // leftIcon={<Entypo name='chevron-right' size={20} color={brownPalette.brown10}/>}
+                        leftIcon={<Feather name='hash' size={15} color={brownPalette.brown10}/>}
                         onChangeText={text => setQuantity(text)} >
-                    </TextInput>
+                    </Input>
                 </View> 
                 <View style={styles.buttonContainer}>
                     <Button 
@@ -82,7 +96,7 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     />                  
                 </View>   
                 
-            </View>
+            </SafeAreaView>
                 
                 
     )
@@ -92,20 +106,22 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#faf5ef',
+        backgroundColor: brownPalette.brown1,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: 10
     },
     textInputContainer: {
-        flex:1,
+        
         width: 400,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        zIndex: -1
     },
     textBox: {
         borderRadius: 8,
-        backgroundColor: brownPalette.brown3,
-        width: '80%',
+        backgroundColor: brownPalette.brown2,
+        width: 300,
         padding: 10,
         margin: 10
     },
@@ -124,21 +140,20 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: 300,
         margin:10,
-        borderRadius: 7
+        borderRadius: 6
     },
     pickerContainer:{
         flex:1,
-        justifyContent: 'center'
-    },
-    pickerStyle: {
-        height: 50, 
-        width: 200,        
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        marginTop: 40,
+        width: '100%', 
+
+        
     },
     pickerItemStyle: {
-        height: 120, 
-        width: 180,
-        backgroundColor: '#f0e3d0', 
-        borderRadius: 12,       
+        backgroundColor: brownPalette.brown2, 
+        borderRadius: 0    
 
     }
 });

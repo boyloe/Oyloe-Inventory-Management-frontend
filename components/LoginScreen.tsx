@@ -17,23 +17,25 @@ export default function LoginScreen({navigation}:{navigation:any}) {
                     <Image source={require('../assets/images/OIMSLogo.png')}
                     style={styles.image} />
             </View>
-            <Input
-                placeholder='Username'
-                placeholderTextColor={brownPalette.brown7}
-                leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
-            />
-            <Input
-                placeholder='Password'
-                secureTextEntry={true}
-                placeholderTextColor={brownPalette.brown7}
-                leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
-            />
-            <Button 
-                buttonStyle={styles.button}
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
-                title="Login"
-                onPress={() => navigation.navigate('Home')}
-            />
+            <View style={styles.inputContainer}>
+                <Input
+                    placeholder='Username'
+                    placeholderTextColor={brownPalette.brown7}
+                    leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
+                />
+                <Input
+                    placeholder='Password'
+                    secureTextEntry={true}
+                    placeholderTextColor={brownPalette.brown7}
+                    leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
+                />
+                <Button 
+                    buttonStyle={styles.button}
+                    titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
+                    title="Login"
+                    onPress={() => navigation.navigate('Home')}
+                />
+            </View>
         </View>
     )
 }
@@ -54,16 +56,27 @@ const styles= StyleSheet.create({
     button: {
         backgroundColor: brownPalette.brownBase,
         width: 200,
-        color: brownPalette.brownBase
+        height: 40,
+        color: brownPalette.brownBase,
+        margin: 50,
+        
     },
     input: {
-
+        width: 300
     },
     imageContainer: {
+        flex: 1,
+        paddingTop: 50, 
 
-    },
+    }, 
     image: {
-        
+        height: 250,
+        width: 250
+    },
+    inputContainer: {
+        flex: 1,
+        width: 300,
+        justifyContent: 'flex-start'
     }
     
 })

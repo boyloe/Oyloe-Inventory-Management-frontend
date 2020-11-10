@@ -23,27 +23,17 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
         quantity: 0
     }])
 
+    const [currentQuantities, setCurrentQuantities] = useState([''])
+
     useEffect(() => {        
-        const sortedProducts =  products.sort(function(a, b) {
-            let nameProductA = a.name.toUpperCase(); // ignore upper and lowercase
-            let nameProductB = b.name.toUpperCase(); // ignore upper and lowercase
-            if (nameProductA < nameProductB) {
-                return -1;
-            }
-            if (nameProductA > nameProductB) {
-                return 1;
-            }
-            // names must be equal
-            return 0;
-        });
-        setInventory(sortedProducts as Product[])
+        setInventory(products as Product[])
     },[])
 
-    const renderInventory = ({ item }:{item:Product}) => (
-        <Item name={item.name} quantity={item.quantity} key={item._id} description={item.description}/>
+    const renderInventory = ({ item, index }:{item:Product, index: number}) => (
+        <Item name={item.name} quantity={item.quantity} index={index} key={item._id} description={item.description}/>
     );
 
-    const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string}) => (
+    const Item = ({ name ,quantity, description, index }:{name:string, quantity: number, description:string, index:number}) => (
         <View style={styles.item} >
             <View style={styles.productInfoContainer}>
                 <Text style={styles.name}>{name}</Text>
@@ -52,7 +42,14 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 <View style={styles.countContainer}>
                     <View style={styles.currentCountContainer}>
                         <Text style={styles.currentCount}>Current Count: </Text>
-                        <TextInput style={styles.Input} defaultValue={`${quantity}`}/>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={text => {
+                                currentQuantities[index] = text
+                                setCurrentQuantities(currentQuantities)
+                            }}
+                            value={currentQuantities[index]}
+                            />
                     </View>    
                     <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
                 </View>
@@ -68,17 +65,17 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 keyExtractor={(product) => {
                     return product._id}
                 }
-                ListFooterComponent={<Button 
+            /> 
+            <Button 
                                         buttonStyle={{
                                             backgroundColor: brownPalette.brownBase,
                                             padding: 10,
                                             }}
                                         title="Submit Daily Inventory"
-                                        titleStyle={{color: brownPalette.brown1}}
-                                        containerStyle={{borderRadius: 10, width: 150, alignSelf: 'center', marginBottom:40 }}
+                                        titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
+                                        containerStyle={{borderRadius: 7, width: 300, alignSelf: 'center', marginVertical:50 }}
                                         onPress={() => navigation.navigate('Home')}
-                                        />}
-            />               
+                                        />              
         </SafeAreaView>        
     )
 }
@@ -99,10 +96,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         borderRadius: 10,
-        height: 250,
-        shadowOffset: {width: 7, height: 7},
+        height: 180,
+        shadowOffset: {width:5, height: 5},
         shadowOpacity: 0.4,
-        shadowColor: brownPalette.brown9
+        shadowColor: brownPalette.brown7
         
 
     },
@@ -116,12 +113,13 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start'
 
     },
-    Input: {
+    input: {
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: brownPalette.brownBase,
         backgroundColor: brownPalette.brown1,
-        width: 40,
+        height:30,
+        width:40,
         textAlign: 'center',
         alignSelf: 'flex-end',
 
@@ -138,7 +136,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end'
     },
     currentCountContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
     currentCount: {
         fontSize:20,

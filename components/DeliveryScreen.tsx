@@ -23,7 +23,6 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }])
     let params = route.params
     useEffect(() => {
-        console.log(productsDelivered)
         if (params != undefined || params != route.params) {
             const { product } = route.params
             setProductsDelivered([...productsDelivered, {name: product.name, quantity: product.quantity}])
@@ -57,7 +56,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            <Text style={{fontFamily: 'Futura', fontSize: 36}}>Products Delivered</Text>
+            <Text style={{fontFamily: 'Futura', fontSize: 48, color: brownPalette.brown8, alignSelf: 'flex-start'}}>Delivery Ticket</Text>
             <View style={{flex:1}}>
                 <Card containerStyle={{padding:0, width: 400}}>
                     {productsDelivered.length > 1 ? displayProductsDelivered() : null}       
