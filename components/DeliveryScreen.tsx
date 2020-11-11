@@ -121,7 +121,7 @@ const styles= StyleSheet.create({
     },
     buttons: {
         backgroundColor: brownPalette.brownBase,
-        borderRadius: 12,
+        borderRadius: 6 ,
         width: 340,
         height: 50, 
         padding:4, 

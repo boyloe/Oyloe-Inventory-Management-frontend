@@ -83,8 +83,8 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                                             padding: 10,
                                             }}
                                         title="Submit Daily Inventory"
-                                        titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
-                                        containerStyle={{borderRadius: 6, width: 340, alignSelf: 'center', marginVertical: 25}}
+                                        titleStyle={styles.buttonTitleStyle}
+                                        containerStyle={styles.buttonContainerStyle}
                                         onPress={() => navigation.navigate('Home')}
                                         />              
         </SafeAreaView>        
@@ -127,15 +127,25 @@ const styles = StyleSheet.create({
     input: {
         borderStyle: 'solid',
         borderWidth: 2,
-        borderColor: brownPalette.brownBase,
-        backgroundColor: brownPalette.brown1,
+        borderRadius: 2,
+        borderColor: brownPalette.brown8,
+        backgroundColor: brownPalette.brown2,
         height:30,
         width:40,
         textAlign: 'center',
-        alignSelf: 'flex-end',
-
-        
-        
+        alignSelf: 'flex-end',       
+    },
+    buttonContainerStyle : {
+        borderRadius: 6, 
+        width: 340, 
+        alignSelf: 'center', 
+        marginVertical: 25
+    },
+    buttonTitleStyle: {
+        color: brownPalette.brown10, 
+        fontFamily: 'Futura', 
+        fontSize: 24, 
+        fontWeight: '800'
     },
     description: {
         fontSize:20,

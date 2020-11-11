@@ -63,13 +63,12 @@ const styles= StyleSheet.create({
     button: {
         backgroundColor: brownPalette.brownBase, 
         borderRadius: 6,   
-        width: 340,       
     },
     buttonTitleStyle: {
         fontFamily: 'Futura', 
         color: brownPalette.brown10, 
         fontSize: 24, 
-        fontWeight: '800'
+        fontWeight: '800',
     },
     input: {
         width: 300
