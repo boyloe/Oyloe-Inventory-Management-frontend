@@ -79,12 +79,14 @@ const App: React.FC<IAppProps> = () => {
             }, 
           })}
           tabBarOptions={{
-            style: {backgroundColor: brownPalette.brown3},
+            style: {backgroundColor: brownPalette.brown3, height: 100},
+            tabStyle: {paddingTop: 10},
             activeTintColor: brownPalette.brown8,
             inactiveTintColor: brownPalette.brown6,
             labelStyle: {
-              fontSize:14,
-              fontFamily: 'Futura'
+              fontSize:16,
+              fontFamily: 'Futura',
+              marginVertical: 0
             }
             
           }}  

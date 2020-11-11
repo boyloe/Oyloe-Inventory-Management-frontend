@@ -48,11 +48,15 @@ const styles= StyleSheet.create({
         width: 240,  
         paddingVertical: 10,
         margin:10,
-        borderRadius: 7
+        borderRadius: 7,
+
     },
     buttonContainer: {
         flex:1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        paddingBottom: 20
+
     },
     imageContainer: {
         flex: 1,

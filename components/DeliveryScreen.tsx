@@ -36,7 +36,7 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
                 // return <Text key={index}>{product.name}  {product.quantity}</Text>
                 return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} topDivider={true} bottomDivider={true}>
                         <ListItem.Content>
-                            <ListItem.Title style={{fontSize: 30, color: brownPalette.brown9}}>{product.name}</ListItem.Title>
+                            <ListItem.Title style={{fontSize: 30, color: brownPalette.brown8}}>{product.name}</ListItem.Title>
                             <ListItem.Subtitle style={{fontStyle: 'italic', color: brownPalette.brown9}}>Quantity: {product.quantity}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
@@ -62,7 +62,13 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            <Text style={{fontFamily: 'Futura', fontSize: 48, color: brownPalette.brown8, alignSelf: 'flex-start'}}>Delivery Ticket</Text>
+            <Text style={{fontFamily: 'Futura', 
+                fontSize: 42, 
+                color: brownPalette.brown9, 
+                marginTop: 50, 
+                marginLeft: 15,
+                alignSelf: 'flex-start',
+                textDecorationLine: 'underline'}}>Delivery Ticket</Text>
             <View style={{flex:1}}>
                 {productsDelivered.length > 1 
                     ? <Card containerStyle={{padding:0, width: 400, backgroundColor: brownPalette.brown1, borderWidth:0}}>

@@ -61,14 +61,25 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
     
     return (
             <SafeAreaView style={styles.container}> 
-                <Text style={{fontFamily:'Futura', fontSize: 42, marginVertical:10, color: brownPalette.brown9, alignSelf: 'flex-start'}}>Product Info</Text>
+                <Text 
+                    style={{
+                        fontFamily:'Futura', 
+                        fontSize: 42, 
+                        marginVertical:40,
+                        marginLeft:40,
+                        textDecorationLine: 'underline',
+                        color: brownPalette.brown9, 
+                        alignSelf: 'flex-start'}}
+                >
+                    Product Info
+                </Text>
                 <View style={styles.pickerContainer}>
                     <DropDownPicker 
                         items={getProductOptions(products)}
                         style={{backgroundColor: brownPalette.brown2}}
                         defaultValue={selectedProduct}
-                        dropDownStyle={{backgroundColor: brownPalette.brown3,}}
-                        containerStyle={{height:100, width: 305, alignSelf: 'flex-start', paddingLeft: 7}}
+                        dropDownStyle={{backgroundColor: brownPalette.brown3}}
+                        containerStyle={{height:100, width: 320, alignSelf: 'center'}}
                         selectedLabelStyle= {{backgroundColor: brownPalette.brown2}}
                         itemStyle={{justifyContent: 'flex-start'}}
                         labelStyle={{textAlign: 'left', color: brownPalette.brown9, fontSize: 24}}
@@ -121,9 +132,10 @@ const styles = StyleSheet.create({
     textBox: {
         borderRadius: 8,
         backgroundColor: brownPalette.brown2,
-        width: 300,
+        width: 320,
+        alignSelf: 'center',
         padding: 10,
-        margin: 10
+        // margin: 20
     },
     buttonContainer: {
         flex:1,

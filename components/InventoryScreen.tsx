@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { View, Text, StatusBar, SafeAreaView, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StatusBar, SafeAreaView, StyleSheet, FlatList } from 'react-native'
 import { Button} from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
-
+import { TextInput, ScrollView} from 'react-native-gesture-handler'
 import { brownPalette } from '../assets/ColorPalette'
-import { ScrollView } from 'react-native-gesture-handler'
+import { render } from 'react-dom'
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;
@@ -30,46 +30,63 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
         setInventory(products as Product[])
     },[])
 
-    const renderInventory = (inventory:Product[]) => (
-        inventory.map((product:Product, index:number) => {
-            // return <TextInput style={styles.input} / >
-            return <Item name={product.name} quantity={product.quantity} key={product._id} description={product.description} index={index} />
-        }
-    ));
-
-    const Item = ({ name ,quantity, description }:{name:string, quantity: number, description:string, index:number}) => (
-            <View style={styles.item} >
+    const renderInventory = ( inventory:Product[]) => (
+        // <Item name={item.name} quantity={item.quantity} index={index} key={item._id} description={item.description}/>
+        inventory.map((product:Product, index) => (
+            <View style={styles.item} key={product._id}>
                 <View style={styles.productInfoContainer}>
-                <Text style={styles.name}>{name}</Text>
-                <Text style={styles.description}>{description}</Text>
+                    <Text style={styles.name}>{product.name}</Text>
+                    <Text style={styles.description}>{product.description}</Text>
+                </View>
+                <View style={styles.countContainer}>
+                    <View style={styles.currentCountContainer}>
+                        <Text style={styles.currentCount}>Current Count: </Text>
+                        <TextInput 
+                            style={styles.input}                            
+                        />
+                    </View>    
+                    <Text style={styles.previousCount}>Previous Count: {product.quantity}</Text>            
+                </View>
             </View>
-            <View style={styles.countContainer}>
-                <View style={styles.currentCountContainer}>
-                    <Text style={styles.currentCount}>Current Count: </Text>
-                    <TextInput style={styles.input}/>
-                </View>    
-                <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
-            </View>
-        </View>            
+            )
+        )
     );
+
+    // const Item = ({ name ,quantity, description, index }:{name:string, quantity: number, description:string, index:number}) => (
+    //     <View style={styles.item} >
+    //         <View style={styles.productInfoContainer}>
+    //             <Text style={styles.name}>{name}</Text>
+    //             <Text style={styles.description}>{description}</Text>
+    //         </View>
+    //             <View style={styles.countContainer}>
+    //                 <View style={styles.currentCountContainer}>
+    //                     <Text style={styles.currentCount}>Current Count: </Text>
+    //                     <TextInput 
+    //                         style={styles.input}
+                            
+    //                         />
+    //                 </View>    
+    //                 <Text style={styles.previousCount}>Previous Count: {quantity}</Text>            
+    //             </View>
+
+    //     </View>
+    // );
         
     return (
-        <SafeAreaView style={styles.container} >      
+        <SafeAreaView style={styles.container} >
             <ScrollView>
                 {renderInventory(inventory)}
-
             </ScrollView>
-            
             <Button 
-                buttonStyle={{
-                    backgroundColor: brownPalette.brownBase,
-                    padding: 10,
-                    }}
-                title="Submit Daily Inventory"
-                titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
-                containerStyle={{borderRadius: 7, width: 300, alignSelf: 'center', marginVertical:50 }}
-                onPress={() => navigation.navigate('Home')}
-                />              
+                                        buttonStyle={{
+                                            backgroundColor: brownPalette.brownBase,
+                                            padding: 10,
+                                            }}
+                                        title="Submit Daily Inventory"
+                                        titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
+                                        containerStyle={{borderRadius: 6, width: 340, alignSelf: 'center', marginVertical: 8}}
+                                        onPress={() => navigation.navigate('Home')}
+                                        />              
         </SafeAreaView>        
     )
 }
@@ -81,75 +98,68 @@ const styles = StyleSheet.create({
         backgroundColor: brownPalette.brown1,
         
     },
-    // item: {
-    //     backgroundColor: brownPalette.brown4,
-    //     padding: 15,
-    //     marginVertical: 8,
-    //     marginHorizontal: 16,
-    //     flexDirection: 'column',
-    //     justifyContent: 'space-between',
-    //     alignItems: 'flex-start',
-    //     borderRadius: 10,
-    //     // height: 180,
-    //     shadowOffset: {width:5, height: 5},
-    //     shadowOpacity: 0.4,
-    //     shadowColor: brownPalette.brown7
+    item: {
+        backgroundColor: brownPalette.brown4,
+        padding: 15,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        borderRadius: 6,
+        height: 200,
+        shadowOffset: {width:5, height: 5},
+        shadowOpacity: 0.4,
+        shadowColor: brownPalette.brown7
         
 
-    // },
-    // productInfoContainer: {
-        
-    // },
-    // name: {
-    //     fontSize: 34,
-    //     fontFamily: 'Futura',
-    //     color: brownPalette.brown10,
-    //     alignSelf: 'flex-start'
-
-    // },
-    input: {
-        padding: 0,
-        margin: 0,
-        textDecorationColor: 'black',
-        textDecorationStyle: 'solid',
-    //     borderStyle: 'solid',
-        borderWidth: 2,
-        fontSize: 24,
-    //     borderColor: brownPalette.brownBase,
-    //     backgroundColor: brownPalette.brown1,
-        width: 40,
-        height: 30,
-    //     // textAlign: 'center',
-    //     // alignSelf: 'flex-end',   
+    },
+    productInfoContainer: {
         
     },
-    // description: {
-    //     fontSize:20,
-    //     fontFamily:'Futura', 
-    //     color: brownPalette.brown8,
-    //     alignSelf: 'flex-start'
-    // },
-    // countContainer: {
-    //     alignSelf: 'flex-end',
-    //     borderWidth:1
-    // },
-    // currentCountContainer: {
-    //     flexDirection: 'row',
-    //     borderWidth: 1
-        
-    // },
-    // currentCount: {
-    //     fontSize:20,
-    //     fontFamily:'Futura', 
-    //     color: brownPalette.brown8,
-    //     borderWidth: 1
+    name: {
+        fontSize: 34,
+        fontFamily: 'Futura',
+        color: brownPalette.brown10,
+        alignSelf: 'flex-start'
 
-    // },
-    // previousCount: {
-    //     fontSize:20,
-    //     fontFamily:'Futura', 
-    //     color: brownPalette.brown8
-    // }
+    },
+    input: {
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: brownPalette.brownBase,
+        backgroundColor: brownPalette.brown1,
+        height:30,
+        width:40,
+        textAlign: 'center',
+        alignSelf: 'flex-end',
+
+        
+        
+    },
+    description: {
+        fontSize:20,
+        fontFamily:'Futura', 
+        color: brownPalette.brown8,
+        alignSelf: 'flex-start'
+    },
+    countContainer: {
+        alignSelf: 'flex-end'
+    },
+    currentCountContainer: {
+        flexDirection: 'row',
+        
+    },
+    currentCount: {
+        fontSize:20,
+        fontFamily:'Futura', 
+        color: brownPalette.brown8
+    },
+    previousCount: {
+        fontSize:20,
+        fontFamily:'Futura', 
+        color: brownPalette.brown8
+    }
 });
 
 export default InventoryScreen
