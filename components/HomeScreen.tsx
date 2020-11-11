@@ -41,8 +41,8 @@ const styles= StyleSheet.create({
         alignItems: 'center', 
         justifyContent:'center',
         backgroundColor: brownPalette.brown1
-
     },   
+
     buttonStyle: {
         backgroundColor: brownPalette.brownBase,
         width: 340,  
@@ -55,8 +55,7 @@ const styles= StyleSheet.create({
         flex:1,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 20
-
+        paddingBottom: 30
     },
     imageContainer: {
         flex: 1,

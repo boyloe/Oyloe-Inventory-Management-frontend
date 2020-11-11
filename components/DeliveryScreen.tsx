@@ -84,13 +84,13 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
             </View>
             <View style={styles.buttonContainer}>
                 <Button 
-                    buttonStyle={styles.buttons}
+                    buttonStyle={styles.buttonStyle}
                     title="Add Product to Ticket"
                     titleStyle={styles.buttonTitleStyle}
                     onPress={() => navigation.navigate('DeliveryForm')}
                 />    
                 <Button 
-                    buttonStyle={styles.buttons}
+                    buttonStyle={styles.buttonStyle}
                     titleStyle={styles.buttonTitleStyle}
                     title="Submit Delivery Ticket"
                     onPress={handleDeliverySubmit}  
@@ -119,12 +119,12 @@ const styles= StyleSheet.create({
         alignSelf: 'flex-start',
         textDecorationLine: 'underline'
     },
-    buttons: {
+    buttonStyle: {
         backgroundColor: brownPalette.brownBase,
         borderRadius: 6 ,
         width: 340,
         height: 50, 
-        padding:4, 
+        paddingVertical:10, 
         marginVertical: 10
     },
     buttonContainer: {

@@ -78,10 +78,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                 {renderInventory(inventory)}
             </ScrollView>
             <Button 
-                                        buttonStyle={{
-                                            backgroundColor: brownPalette.brownBase,
-                                            padding: 10,
-                                            }}
+                                        buttonStyle={styles.buttonStyle}
                                         title="Submit Daily Inventory"
                                         titleStyle={styles.buttonTitleStyle}
                                         containerStyle={styles.buttonContainerStyle}
@@ -139,7 +136,15 @@ const styles = StyleSheet.create({
         borderRadius: 6, 
         width: 340, 
         alignSelf: 'center', 
-        marginVertical: 25
+        marginVertical: 15
+    },
+    buttonStyle: {
+        backgroundColor: brownPalette.brownBase,
+        borderRadius: 6 ,
+        width: 340,
+        height: 50, 
+        paddingVertical:10, 
+        marginVertical: 10
     },
     buttonTitleStyle: {
         color: brownPalette.brown10, 

@@ -31,7 +31,7 @@ export default function LoginScreen({navigation}:{navigation:any}) {
                 />
                 <View style={styles.buttonContainer}>
                     <Button 
-                        buttonStyle={styles.button}
+                        buttonStyle={styles.buttonStyle}
                         titleStyle={styles.buttonTitleStyle}
                         title="Login"
                         onPress={() => navigation.navigate('Home')}
@@ -47,32 +47,36 @@ const styles= StyleSheet.create({
         flex: 1, 
         alignItems: 'center', 
         justifyContent:'center',
-        backgroundColor: brownPalette.brown1        
-        
+        backgroundColor: brownPalette.brown1,         
     },
-    titleText: {
-        fontSize: 28, 
-        textAlign: 'center',
-        
-    },
+
     buttonContainer: {
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 40
+        paddingBottom: 30,
+        // borderWidth:1,
+        width: 340
     },
-    button: {
-        backgroundColor: brownPalette.brownBase, 
-        borderRadius: 6,   
+
+    buttonStyle: {
+        backgroundColor: brownPalette.brownBase,
+        borderRadius: 6 ,
+        width: 340,
+        height: 50, 
+        marginVertical: 10 
     },
+
     buttonTitleStyle: {
         fontFamily: 'Futura', 
         color: brownPalette.brown10, 
         fontSize: 24, 
         fontWeight: '800',
     },
+
     input: {
-        width: 300
+        width: 340
     },
+
     imageContainer: {
         flex: 1,
         paddingTop: 50, 
@@ -84,7 +88,7 @@ const styles= StyleSheet.create({
     },
     inputContainer: {
         flex: 1,
-        width: 300,
+        width: 340,
         justifyContent: 'flex-start'
     }
     
