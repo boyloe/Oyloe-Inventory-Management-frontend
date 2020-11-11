@@ -33,13 +33,23 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
 
     const displayProductsDelivered = () => {
         return productsDelivered.slice(1).map((product,index) => {
-                // return <Text key={index}>{product.name}  {product.quantity}</Text>
-                return <ListItem key={index} containerStyle={{backgroundColor:brownPalette.brown1}} topDivider={true} bottomDivider={true}>
-                        <ListItem.Content>
-                            <ListItem.Title style={{fontSize: 30, color: brownPalette.brown8}}>{product.name}</ListItem.Title>
-                            <ListItem.Subtitle style={{fontStyle: 'italic', color: brownPalette.brown9}}>Quantity: {product.quantity}</ListItem.Subtitle>
-                        </ListItem.Content>
-                    </ListItem>
+            return <ListItem 
+                key={index} 
+                containerStyle={{backgroundColor:brownPalette.brown1}} 
+                topDivider={true} 
+                bottomDivider={true}
+                >
+                    <ListItem.Content>
+                        <ListItem.Title 
+                            style={{fontSize: 24, color: brownPalette.brown8, fontFamily: 'Futura', marginLeft: 20}}>{product.name}
+                        </ListItem.Title>
+                        <ListItem.Subtitle 
+                            style={{fontStyle: 'italic', color: brownPalette.brown9, marginLeft: 20}}
+                        >
+                            Quantity: {product.quantity}
+                        </ListItem.Subtitle>
+                    </ListItem.Content>
+                </ListItem>
         })
     }
 
@@ -62,35 +72,30 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
     }
     return(
         <View style={styles.container}>
-            <Text style={{fontFamily: 'Futura', 
-                fontSize: 42, 
-                color: brownPalette.brown9, 
-                marginTop: 50, 
-                marginLeft: 15,
-                alignSelf: 'flex-start',
-                textDecorationLine: 'underline'}}>Delivery Ticket</Text>
+            <Text style={styles.titleText}>Delivery Ticket</Text>
             <View style={{flex:1}}>
                 {productsDelivered.length > 1 
-                    ? <Card containerStyle={{padding:0, width: 400, backgroundColor: brownPalette.brown1, borderWidth:0}}>
+                    ? <Card containerStyle={{padding:0, width: 400, backgroundColor: brownPalette.brown1, borderWidth:0,shadowOffset:{width: 5, height: 5}}}>
                         {displayProductsDelivered()}
                         </Card>
                     : displayLogo()
                 }
                 
             </View>
-            <Button 
-                buttonStyle={styles.buttons}
-                title="Add Product to Ticket"
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
-                onPress={() => navigation.navigate('DeliveryForm')}
-            />    
-            <Button 
-                buttonStyle={styles.buttons}
-                titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
-                title="Submit Delivery Ticket"
-                onPress={handleDeliverySubmit}  
-            />    
-
+            <View style={styles.buttonContainer}>
+                <Button 
+                    buttonStyle={styles.buttons}
+                    title="Add Product to Ticket"
+                    titleStyle={styles.buttonTitleStyle}
+                    onPress={() => navigation.navigate('DeliveryForm')}
+                />    
+                <Button 
+                    buttonStyle={styles.buttons}
+                    titleStyle={styles.buttonTitleStyle}
+                    title="Submit Delivery Ticket"
+                    onPress={handleDeliverySubmit}  
+                />  
+            </View>
         </View>
     )
 
@@ -106,19 +111,32 @@ const styles= StyleSheet.create({
 
     },
     titleText: {
-        fontSize: 28, 
-        textAlign: 'center',
-        flex: 1,
-        padding: 20
-
-
+        fontFamily: 'Futura', 
+        fontSize: 38, 
+        color: brownPalette.brown9, 
+        marginTop: 50, 
+        marginLeft: 40,
+        alignSelf: 'flex-start',
+        textDecorationLine: 'underline'
     },
     buttons: {
         backgroundColor: brownPalette.brownBase,
         borderRadius: 12,
-        width: 200, 
+        width: 340,
+        height: 50, 
         padding:4, 
-        margin:10
+        marginVertical: 10
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 30,
+    },
+    buttonTitleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10, 
+        fontSize: 24, 
+        fontWeight: '800'
     },
     imageContainer: {
         flex: 1,

@@ -45,10 +45,10 @@ const styles= StyleSheet.create({
     },   
     buttonStyle: {
         backgroundColor: brownPalette.brownBase,
-        width: 240,  
+        width: 340,  
         paddingVertical: 10,
-        margin:10,
-        borderRadius: 7,
+        marginVertical:10,
+        borderRadius: 6,
 
     },
     buttonContainer: {
@@ -70,6 +70,7 @@ const styles= StyleSheet.create({
     buttonTitleStyle: {
         fontFamily: 'Futura', 
         color: brownPalette.brown10,
-        fontWeight: '700'
+        fontWeight: '800',
+        fontSize: 24,
     }
 })

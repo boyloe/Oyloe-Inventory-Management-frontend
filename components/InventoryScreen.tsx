@@ -84,7 +84,7 @@ const InventoryScreen: React.FC <InventoryProps> = ({ navigation,products }) => 
                                             }}
                                         title="Submit Daily Inventory"
                                         titleStyle={{color: brownPalette.brown9, fontFamily: 'Futura'}}
-                                        containerStyle={{borderRadius: 6, width: 340, alignSelf: 'center', marginVertical: 8}}
+                                        containerStyle={{borderRadius: 6, width: 340, alignSelf: 'center', marginVertical: 25}}
                                         onPress={() => navigation.navigate('Home')}
                                         />              
         </SafeAreaView>        
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         borderRadius: 6,
-        height: 200,
+        height: 187,
         shadowOffset: {width:5, height: 5},
         shadowOpacity: 0.4,
         shadowColor: brownPalette.brown7

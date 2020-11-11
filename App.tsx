@@ -80,7 +80,7 @@ const App: React.FC<IAppProps> = () => {
           })}
           tabBarOptions={{
             style: {backgroundColor: brownPalette.brown3, height: 100},
-            tabStyle: {paddingTop: 10},
+            tabStyle: {paddingTop: 10, shadowOffset: {height: 5, width:5}},
             activeTintColor: brownPalette.brown8,
             inactiveTintColor: brownPalette.brown6,
             labelStyle: {

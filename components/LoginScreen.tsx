@@ -29,12 +29,14 @@ export default function LoginScreen({navigation}:{navigation:any}) {
                     placeholderTextColor={brownPalette.brown7}
                     leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
                 />
-                <Button 
-                    buttonStyle={styles.button}
-                    titleStyle={{fontFamily: 'Futura', color: brownPalette.brown10}}
-                    title="Login"
-                    onPress={() => navigation.navigate('Home')}
-                />
+                <View style={styles.buttonContainer}>
+                    <Button 
+                        buttonStyle={styles.button}
+                        titleStyle={styles.buttonTitleStyle}
+                        title="Login"
+                        onPress={() => navigation.navigate('Home')}
+                    />
+                </View>
             </View>
         </View>
     )
@@ -53,13 +55,21 @@ const styles= StyleSheet.create({
         textAlign: 'center',
         
     },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 40
+    },
     button: {
-        backgroundColor: brownPalette.brownBase,
-        width: 200,
-        height: 40,
-        color: brownPalette.brownBase,
-        margin: 50,
-        
+        backgroundColor: brownPalette.brownBase, 
+        borderRadius: 6,   
+        width: 340,       
+    },
+    buttonTitleStyle: {
+        fontFamily: 'Futura', 
+        color: brownPalette.brown10, 
+        fontSize: 24, 
+        fontWeight: '800'
     },
     input: {
         width: 300
