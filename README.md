@@ -5,10 +5,10 @@ Native mobile app designed to help remote oilfield employees track inventory mor
 * [About](#about)
 * [Intro Video](#intro-video)
 * [App Features](#app-features)
-* [Coming Soon](#future-implementation)
+* [Future Implementation](#future-implementation)
 * [Tech Stack](#tech-stack)
-* [Contact](#contact)
-* [License](#license)
+* [Contact](#contact-info)
+
 
 ## About
 I have worked in the oilfield as a drilling fluids engineer for 9+ years. Every location I have worked has been remote and the climate is often 
@@ -46,16 +46,20 @@ User can click on "Input Daily Inventory" to load the inventory screen. On this 
 ## Challenges
 Implementing Typescript for the first time was difficult. I had to develop custom data types for all of the product info that was being fetched from my back end. I found the documentation for Typescript to be extremely helpful in determining the best way to implement my custom typing. Coming from React to React Native also brought some unique challenges as far as styling. Styling for a mobile device requires a different approach then in browser style. I was able to use a great styling library called React Native Elements to implement my design.
 
-## Future Implemtation
+## Future Implementation
  - User can add custom products to directly to delivery tickets for abnormal deliveries
  - User can be tied to more than one inventory to manage multiple locations from one account
  - Product quantity changes will be optimistically rendered on inventory screen
  
 ## Tech Stack
-Frontend: [Typescript](https://www.typescriptlang.org/), [React Native](https://reactnative.dev/), [React Native Elements](https://react-native-elements.github.io/)
+Frontend: [Typescript](https://www.typescriptlang.org/), [React Native](https://reactnative.dev/), [React Native Elements](https://react-native-elements.github.io/)  
 Backend:  [Node](https://nodejs.org/en/), [Express](https://expressjs.com/), [MongoDB](https://www.mongodb.com/)
 
- 
+## Contact Info
+Email: boyloe@gmail.com
+LinkedIn: https://www.linkedin.com/in/bryan-oyloe
+Blog: https://www.dev.to/boyloe
+
  ## Collaboration
  1. Fork and clone this repo along with backend repo https://github.com/boyloe/Oyloe-Inventory-Management-backend
  2. Install back and frontend dependencies with `npm install`
