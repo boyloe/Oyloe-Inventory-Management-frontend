@@ -57,7 +57,9 @@ Backend:  [Node](https://nodejs.org/en/), [Express](https://expressjs.com/), [Mo
 
 ## Contact Info
 Email: boyloe@gmail.com
+
 LinkedIn: https://www.linkedin.com/in/bryan-oyloe
+
 Blog: https://www.dev.to/boyloe
 
  ## Collaboration
