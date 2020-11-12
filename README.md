@@ -5,7 +5,7 @@ Native mobile app designed to help remote oilfield employees track inventory mor
 * [About](#about)
 * [Intro Video](#intro-video)
 * [App Features](#app-features)
-* [Coming Soon](#coming-soon)
+* [Coming Soon](#future-implementation)
 * [Tech Stack](#tech-stack)
 * [Contact](#contact)
 * [License](#license)
@@ -18,10 +18,12 @@ This was tedious, repetitive, and error prone. The Oyloe Inventory Management sy
 smart phone or tablet. This eliminates potential errors from transferring counts from a tally book to a computer for report purposes. Now the reports can be 
 generated directly on the device. OIMS also allows incoming product deliveries to be added through the app so that all inventory management processes are controlled in one convenient location. 
 
-Backend repository: https://github.com/boyloe/
+
 
 ## Intro Video
 Check out the [Oyloe Inventory Management System](demo link) demo!
+
+Backend repository: https://github.com/boyloe/Oyloe-Inventory-Management-backend
 
 ## App Features
 ### Login to Account
@@ -41,8 +43,24 @@ User can click on "Input Daily Inventory" to load the inventory screen. On this 
 
 ![Input Daily Inventory Video gif](https://media.giphy.com/media/fFump5Og2U4tfSb2Cy/giphy.gif)
 
-##Challenges
-Implementing Typescript for the first time was difficult. I had to develop custom data types for all of the product info that was being fetched from my back end. 
+## Challenges
+Implementing Typescript for the first time was difficult. I had to develop custom data types for all of the product info that was being fetched from my back end. I found the documentation for Typescript to be extremely helpful in determining the best way to implement my custom typing. Coming from React to React Native also brought some unique challenges as far as styling. Styling for a mobile device requires a different approach then in browser style. I was able to use a great styling library called React Native Elements to implement my design.
 
+## Future Implemtation
+ - User can add custom products to directly to delivery tickets for abnormal deliveries
+ - User can be tied to more than one inventory to manage multiple locations from one account
+ - Product quantity changes will be optimistically rendered on inventory screen
+ 
+## Tech Stack
+Frontend: [Typescript](https://www.typescriptlang.org/), [React Native](https://reactnative.dev/), [React Native Elements](https://react-native-elements.github.io/)
+Backend:  [Node](https://nodejs.org/en/), [Express](https://expressjs.com/), [MongoDB](https://www.mongodb.com/)
 
+ 
+ ## Collaboration
+ 1. Fork and clone this repo along with backend repo https://github.com/boyloe/Oyloe-Inventory-Management-backend
+ 2. Install back and frontend dependencies with `npm install`
+ 3. Create new database `siteInventory` on backend by opening mongoShell and typing `use siteInventory`
+ 4. Run `npm start` on frontend to get the expo server running
+ 5. To run on iOS emulator, xcode must be installed, for android use Android Studio to create a virtual machine. Full documentmentation is available in Expo docs.
+ 6. Checkout new branch and submit pull requests for review
 
