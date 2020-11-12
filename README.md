@@ -21,7 +21,7 @@ generated directly on the device. OIMS also allows incoming product deliveries t
 
 
 ## Intro Video
-Check out the [Oyloe Inventory Management System](demo link) demo!
+Check out the [Oyloe Inventory Management System](https://www.loom.com/share/1b8b13c1621f4ece8cf174fbecc7f4fe) demo!
 
 Backend repository: https://github.com/boyloe/Oyloe-Inventory-Management-backend
 
