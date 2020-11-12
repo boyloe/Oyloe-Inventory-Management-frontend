@@ -55,7 +55,13 @@ const styles= StyleSheet.create({
         flex:1,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 30
+        paddingBottom: 30,
+        shadowColor: brownPalette.brown10,
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            height: 3,
+            width: 3
+        }
     },
     imageContainer: {
         flex: 1,

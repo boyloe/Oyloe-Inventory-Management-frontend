@@ -31,7 +31,7 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                         quantity: quantity
                     }
                 })
-                setSelectedProduct('')
+                setSelectedProduct('CyberMul')
                 setQuantity('')
         } else {
             return null
@@ -40,8 +40,8 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
 
     const getProductOptions = (products:Product[]) => {
         return products.map(product => {
-            return {label: product.name, value: product.name, icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />}
-        })
+            return {label: product.name, value: product.name, //icon: () => <Entypo name='chevron-small-right' size={18} color={'#000'} />
+        }})
     }
 
     
@@ -73,8 +73,8 @@ export const DeliveryFormScreen:React.FC<HomeScreenProps> = ({navigation, produc
                     <Input 
                         containerStyle={styles.textBox} 
                         label={'Quantity'}
-                        labelStyle={{color: brownPalette.brown9}}
-                        leftIcon={<Feather name='hash' size={15} color={brownPalette.brown10}/>}
+                        labelStyle={{color: brownPalette.brown9, fontFamily:'Futura', fontWeight: '800',fontSize:18}}
+                        leftIcon={<Feather name='hash' size={15} color={brownPalette.brown10} />}
                         onChangeText={text => setQuantity(text)} >
                     </Input>
                 </View> 
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     },
 
     textBox: {
-        borderRadius: 8,
+        borderRadius: 6,
         backgroundColor: brownPalette.brown2,
         width: 320,
         alignSelf: 'center',
@@ -133,13 +133,20 @@ const styles = StyleSheet.create({
             width: 3
         },
         borderWidth: 1,
-        borderColor: brownPalette.brown6
+        borderColor: brownPalette.brown6,
+        fontFamily: 'Futura'
     },
 
     buttonContainer: {
         flex:1,
         justifyContent: 'flex-end',
-        marginBottom: 30
+        marginBottom: 30,
+        shadowColor: brownPalette.brown10,
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            height: 3,
+            width: 3
+        }
     },
 
     buttonTitleStyle: {
@@ -171,11 +178,17 @@ const styles = StyleSheet.create({
     },
 
     pickerDropDownStyle: {
-        backgroundColor: brownPalette.brown4,   
+        backgroundColor: brownPalette.brown4, 
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
+        borderTopColor: brownPalette.brown7 
     },
 
     dropDownPickerItemStyle: { 
-        justifyContent: 'flex-start'  
+        justifyContent: 'flex-start',
+        
     },
 
     dropDownPickerContainerStyle: {
@@ -193,10 +206,14 @@ const styles = StyleSheet.create({
     dropDownPickerLabelStyle: {
         textAlign: 'left', 
         color: brownPalette.brown10, 
-        fontSize: 24
+        fontSize: 24,
+        fontFamily: 'Futura',
+        
     },
 
     dropDownPickerSelectedLabelStyle: {
-        backgroundColor: brownPalette.brown2
+        backgroundColor: brownPalette.brown2,
+        fontFamily: 'Futura',
+
     }
 });

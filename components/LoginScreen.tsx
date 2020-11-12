@@ -55,7 +55,13 @@ const styles= StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: 30,
         // borderWidth:1,
-        width: 340
+        width: 340,
+        shadowColor: brownPalette.brown10,
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            height: 3,
+            width: 3
+        }
     },
 
     buttonStyle: {

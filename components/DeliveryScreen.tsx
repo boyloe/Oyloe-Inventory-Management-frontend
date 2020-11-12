@@ -35,16 +35,16 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
         return productsDelivered.slice(1).map((product,index) => {
             return <ListItem 
                 key={index} 
-                containerStyle={{backgroundColor:brownPalette.brown1}} 
-                topDivider={true} 
+                containerStyle={{backgroundColor:brownPalette.brown2,borderRadius: 6}} 
+                topDivider={true}
                 bottomDivider={true}
                 >
-                    <ListItem.Content>
+                    <ListItem.Content style={{backgroundColor: brownPalette.brown2}}>
                         <ListItem.Title 
-                            style={{fontSize: 24, color: brownPalette.brown8, fontFamily: 'Futura', marginLeft: 20}}>{product.name}
+                            style={styles.listItemStyle}>{product.name}
                         </ListItem.Title>
                         <ListItem.Subtitle 
-                            style={{fontStyle: 'italic', color: brownPalette.brown9, marginLeft: 20}}
+                            style={{fontStyle: 'italic', color: brownPalette.brown9, marginLeft: 20, fontFamily: 'Futura'}}
                         >
                             Quantity: {product.quantity}
                         </ListItem.Subtitle>
@@ -75,7 +75,9 @@ const DeliveryScreen:React.FC<DeliveryScreenProps> = ({navigation,route}) => {
             <Text style={styles.titleText}>Delivery Ticket</Text>
             <View style={{flex:1}}>
                 {productsDelivered.length > 1 
-                    ? <Card containerStyle={{padding:0, width: 400, backgroundColor: brownPalette.brown1, borderWidth:0,shadowOffset:{width: 5, height: 5}}}>
+                    ? <Card 
+                        containerStyle={styles.cardContainerStyle}
+                        >
                         {displayProductsDelivered()}
                         </Card>
                     : displayLogo()
@@ -119,6 +121,14 @@ const styles= StyleSheet.create({
         alignSelf: 'flex-start',
         textDecorationLine: 'underline'
     },
+
+    listItemStyle: {
+        fontSize: 24, 
+        color: brownPalette.brown8, 
+        fontFamily: 'Futura', 
+        marginLeft: 20, 
+        backgroundColor: brownPalette.brown2
+    },
     buttonStyle: {
         backgroundColor: brownPalette.brownBase,
         borderRadius: 6 ,
@@ -131,6 +141,12 @@ const styles= StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         paddingBottom: 30,
+        shadowColor: brownPalette.brown10,
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            height: 3,
+            width: 3
+        }
     },
     buttonTitleStyle: {
         fontFamily: 'Futura', 
@@ -146,11 +162,23 @@ const styles= StyleSheet.create({
     image: {
         height: 250,
         width: 250,
-        opacity: 0.6,
         alignSelf: 'center',
         marginTop: 100,
         backgroundColor: brownPalette.brown1
     },
+
+    cardContainerStyle: {
+        padding:0, 
+        width: 400,  
+        borderWidth:0,
+        shadowOffset: {
+            width: 3, 
+            height: 3
+        },
+        shadowOpacity: 0.5,
+        shadowColor: brownPalette.brown10,
+        borderRadius: 6
+    }
 })
     
 export default DeliveryScreen

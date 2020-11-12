@@ -99,15 +99,15 @@ const styles = StyleSheet.create({
         backgroundColor: brownPalette.brown4,
         padding: 15,
         marginVertical: 8,
-        marginHorizontal: 16,
+        marginHorizontal: 25,
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         borderRadius: 6,
         height: 187,
-        shadowOffset: {width:5, height: 5},
-        shadowOpacity: 0.4,
-        shadowColor: brownPalette.brown7
+        shadowOffset: {width:3, height: 3},
+        shadowOpacity: 0.5,
+        shadowColor: brownPalette.brown10
         
 
     },
@@ -134,9 +134,15 @@ const styles = StyleSheet.create({
     },
     buttonContainerStyle : {
         borderRadius: 6, 
-        width: 340, 
+        width: 345, 
         alignSelf: 'center', 
-        marginVertical: 15
+        marginVertical: 12,
+        shadowColor: brownPalette.brown10,
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            height: 3,
+            width: 3
+        }
     },
     buttonStyle: {
         backgroundColor: brownPalette.brownBase,
@@ -144,7 +150,8 @@ const styles = StyleSheet.create({
         width: 340,
         height: 50, 
         paddingVertical:10, 
-        marginVertical: 10
+        marginBottom: 25,
+        
     },
     buttonTitleStyle: {
         color: brownPalette.brown10, 
