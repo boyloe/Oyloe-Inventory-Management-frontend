@@ -18,6 +18,8 @@ This was tedious, repetitive, and error prone. The Oyloe Inventory Management sy
 smart phone or tablet. This eliminates potential errors from transferring counts from a tally book to a computer for report purposes. Now the reports can be 
 generated directly on the device. OIMS also allows incoming product deliveries to be added through the app so that all inventory management processes are controlled in one convenient location. 
 
+Backend repository: https://github.com/boyloe/
+
 ## Intro Video
 Check out the [Oyloe Inventory Management System](demo link) demo!
 
@@ -38,6 +40,9 @@ the delivered products with the quantity and it will populate the new ticket wit
 User can click on "Input Daily Inventory" to load the inventory screen. On this screen, all products currently on location will be listed with their name, a short description of the product, and the quantity from the previous day. User can input inventory quantities on each product card to update the current quantity available on location. Once all product quantity changes have been entered, user can hit "Submit Daily Inventory" to submit inventory changes. 
 
 ![Input Daily Inventory Video gif](https://media.giphy.com/media/fFump5Og2U4tfSb2Cy/giphy.gif)
+
+##Challenges
+Implementing Typescript for the first time was difficult. I had to develop custom data types for all of the product info that was being fetched from my back end. 
 
 
 
