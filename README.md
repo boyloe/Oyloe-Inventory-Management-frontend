@@ -67,6 +67,6 @@ Blog: https://www.dev.to/boyloe
  2. Install back and frontend dependencies with `npm install`
  3. Create new database `siteInventory` on backend by opening mongoShell and typing `use siteInventory`
  4. Run `npm start` on frontend to get the expo server running
- 5. To run on iOS emulator, xcode must be installed, for android use Android Studio to create a virtual machine. Full documentmentation is available in Expo docs.
+ 5. To run on iOS emulator, Xcode must be installed, for android use Android Studio to create a virtual machine. Full documentation is available in Expo docs.
  6. Checkout new branch and submit pull requests for review
 
