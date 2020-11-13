@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { View, Text, StatusBar, SafeAreaView, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StatusBar, SafeAreaView, StyleSheet} from 'react-native'
 import { Button} from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import {Product} from '../types'
 import { TextInput, ScrollView} from 'react-native-gesture-handler'
 import { brownPalette } from '../assets/ColorPalette'
-import { render } from 'react-dom'
+
 
 export interface InventoryProps {
     navigation: NavigationScreenProp<any,any>;

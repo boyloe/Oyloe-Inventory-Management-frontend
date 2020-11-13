@@ -6,7 +6,6 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import {brownPalette} from './assets/ColorPalette'
-import {grayPalette} from './assets/ColorPalette'
 import { HomeStackScreen } from './components/HomeStackScreen';
 import { DeliveryStackScreen } from './components/DeliveryStackScreen';
 import { InventoryStackScreen } from './components/InventoryStackScreen';

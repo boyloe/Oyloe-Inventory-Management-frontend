@@ -5,8 +5,7 @@ import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
 import DropDownPicker from 'react-native-dropdown-picker'
-import   { Entypo, Feather } from '@expo/vector-icons/'
-import { BorderlessButton } from 'react-native-gesture-handler';
+import   { Feather } from '@expo/vector-icons/'
 
 
 
