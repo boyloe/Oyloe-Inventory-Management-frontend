@@ -10,9 +10,8 @@ import { HomeStackScreen } from './components/HomeStackScreen';
 import { DeliveryStackScreen } from './components/DeliveryStackScreen';
 import { InventoryStackScreen } from './components/InventoryStackScreen';
 import { LoginStackScreen } from './components/LoginStackScreen';
-
-import   { MaterialCommunityIcons } from '@expo/vector-icons/'
-import   { FontAwesome5 } from '@expo/vector-icons/'
+import { MaterialCommunityIcons } from '@expo/vector-icons/'
+import { FontAwesome5 } from '@expo/vector-icons/'
 
 
 
@@ -52,17 +51,14 @@ const App: React.FC<IAppProps> = () => {
       return 0;
     }))
     .then(sortedProducts => setProducts(sortedProducts))
-    // .then(sortedProducts => setProducts(sortedProducts))
     ,[]
   });
-
-  
 
     return (
       <NavigationContainer>      
         <Tab.Navigator 
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ size }) => {
+            tabBarIcon: () => {
               let iconName;
               if (route.name === 'Home') {
                 iconName = 'home'
