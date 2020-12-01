@@ -1,20 +1,17 @@
 
-import React, {useState, useEffect} from 'react';
-import { StyleSheet} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 import { Product } from './types'
-import {NavigationContainer} from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
-import {brownPalette} from './assets/ColorPalette'
+import { brownPalette } from './assets/ColorPalette'
 import { HomeStackScreen } from './components/HomeStackScreen';
 import { DeliveryStackScreen } from './components/DeliveryStackScreen';
 import { InventoryStackScreen } from './components/InventoryStackScreen';
 import { LoginStackScreen } from './components/LoginStackScreen';
 import { MaterialCommunityIcons } from '@expo/vector-icons/'
 import { FontAwesome5 } from '@expo/vector-icons/'
-
-
-
 
 export const baseURL = "https://oyloe-inventory-management.herokuapp.com"
 export interface IAppProps {
