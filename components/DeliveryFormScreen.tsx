@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import { View, StyleSheet, Text, SafeAreaView} from 'react-native';
-import { Button, Input} from 'react-native-elements'
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, SafeAreaView } from 'react-native';
+import { Button, Input } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
 import { Product } from '../types'
