@@ -39,10 +39,10 @@ const App: React.FC<IAppProps> = () => {
       let nameProductA = a.name.toUpperCase(); // ignore upper and lowercase
       let nameProductB = b.name.toUpperCase(); // ignore upper and lowercase
       if (nameProductA < nameProductB) {
-          return -1;
+        return -1;
       }
       if (nameProductA > nameProductB) {
-          return 1;
+        return 1;
       }
       // names must be equal
       return 0;
