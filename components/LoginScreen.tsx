@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {View, StyleSheet, Image} from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import {  NavigationScreenProp } from 'react-navigation'
 import { brownPalette } from '../assets/ColorPalette'
@@ -10,7 +10,7 @@ import { brownPalette } from '../assets/ColorPalette'
 export interface LoginScreenProps {
     navigation: NavigationScreenProp<any,any>;
 }
-export default function LoginScreen({navigation}:{navigation:any}) {
+export default function LoginScreen({ navigation }:{ navigation:any }) {
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -21,20 +21,20 @@ export default function LoginScreen({navigation}:{navigation:any}) {
                 <Input
                     placeholder='Username'
                     placeholderTextColor={brownPalette.brown7}
-                    leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
+                    leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase }}
                 />
                 <Input
                     placeholder='Password'
-                    secureTextEntry={true}
-                    placeholderTextColor={brownPalette.brown7}
-                    leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase}}
+                    secureTextEntry={ true }
+                    placeholderTextColor={ brownPalette.brown7 }
+                    leftIcon={{ type: 'font-awesome', name: 'chevron-right', color: brownPalette.brownBase }}
                 />
-                <View style={styles.buttonContainer}>
+                <View style={ styles.buttonContainer }>
                     <Button 
-                        buttonStyle={styles.buttonStyle}
-                        titleStyle={styles.buttonTitleStyle}
+                        buttonStyle={ styles.buttonStyle }
+                        titleStyle={ styles.buttonTitleStyle }
                         title="Login"
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={ () => navigation.navigate('Home') }
                     />
                 </View>
             </View>
@@ -85,13 +85,14 @@ const styles= StyleSheet.create({
 
     imageContainer: {
         flex: 1,
-        paddingTop: 50, 
-
+        paddingTop: 50,
     }, 
+
     image: {
         height: 250,
         width: 250
     },
+
     inputContainer: {
         flex: 1,
         width: 340,
