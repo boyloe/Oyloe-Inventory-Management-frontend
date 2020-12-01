@@ -85,7 +85,6 @@ const App: React.FC<IAppProps> = () => {
         >
           <Tab.Screen name="Login" component={LoginStackScreen}  />
           <Tab.Screen name="Home" component={HomeStackScreen} />
-          {/* <Tab.Screen name="Delivery" component={DeliveryStackScreen} /> */}
           <Tab.Screen name="Inventory" 
                 options={{
                     title:"Inventory",
